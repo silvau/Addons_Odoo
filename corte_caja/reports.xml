@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report auto="True" header="False" id="corte_caja" model="pos.session" name="pos.session.corte_caja" rml="corte_caja/report/corte_caja.rml" string="Corte de Caja" />
+    </data>
+</openerp>

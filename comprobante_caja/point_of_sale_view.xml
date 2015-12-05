@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+           <record model="ir.ui.view" id="view_pos_session_form_inherit">
+                <field name="name">pos.session.form.view.inherit</field>
+                <field name="model">pos.session</field>
+                <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+                <field name="arch" type="xml">
+                    <button name='%(point_of_sale.action_pos_box_in)d' position="replace">
+                        <button name="%(action_cash_box_in_inherited)d" string="Put Money In" type="action" states="opened,closing_control"/>
+                    </button>
+                    <button name='%(point_of_sale.action_pos_box_out)d' position="replace">
+                        <button name="%(action_cash_box_out_inherited)d" string="Take Money Out" type="action" states="opened,closing_control"/>
+                    </button>
+                </field>
+           </record>
+    </data>
+</openerp>

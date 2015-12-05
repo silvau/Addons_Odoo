@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            id="report_comprobante_caja"
+            string="Comprobante"
+            model="pos.session"
+            name="comprobante.caja"
+            rml="comprobante_caja/report/comprobante_caja.rml"
+            header="False" 
+            menu="False"
+            auto="False"
+            attachment="'CMP'+(object.name+str(time.strftime('%d-%m-%Y %X')) or '').replace('/','')+'.pdf'"
+
+       />
+    </data>
+</openerp>

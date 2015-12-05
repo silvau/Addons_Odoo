@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="cash_box_in_form_inherited">
+            <field name="name">cash_box_in_inherited</field>
+            <field name="model">cash.box.in</field>
+            <field name="inherit_id" ref="account.cash_box_in_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="replace">
+                    <field name="name" class="oe_inline"/>
+                </field>
+                <field name="amount" position="replace">
+                    <field name="amount" class="oe_inline" />
+                </field>
+                <button name="run" position="replace">
+                        <button name="run" string="Put Money In" type="object" class="oe_highlight"/> or 
+                </button> 
+
+            </field>
+        </record>
+
+        <act_window 
+            name="Put Money In"
+            res_model="cash.box.in"
+            src_model="pos.session"
+            view_mode="form"
+            target="new"
+            multi="True"
+            key2="client_action_multi"
+            id="action_cash_box_in_inherited" />
+
+        <record model="ir.ui.view" id="cash_box_out_form_inherited">
+            <field name="name">cash_box_out_inherited</field>
+            <field name="model">cash.box.out</field>
+            <field name="inherit_id" ref="account.cash_box_out_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="replace">
+                    <field name="name" class="oe_inline"/>
+                </field>
+                <field name="amount" position="replace">
+                    <field name="amount" class="oe_inline" />
+                </field>
+                <button name="run" position="replace">
+                    <button name="run" string="Take Money Out" type="object" class="oe_highlight"/> or 
+                </button> 
+            </field>
+        </record>
+
+        <act_window 
+            name="Take Money Out"
+            res_model="cash.box.out"
+            src_model="pos.session"
+            view_mode="form"
+            target="new"
+            multi="True"
+            key2="client_action_multi"
+            id="action_cash_box_out_inherited" />
+    </data>
+</openerp>

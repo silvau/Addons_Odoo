@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template   pageSize="(7.0cm,25.0cm)" title="ticket" author="Yo mero" allowSplitting="20" >
+    <pageTemplate id="ticket">
+      <frame id="ticket" x1="0.0" y1="0.0" width="7.0cm" height="25.0cm"/>
+    </pageTemplate>
+  </template>
+<stylesheet>
+    <blockTableStyle id="Table1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <blockLeftPadding length="5"/>
+    </blockTableStyle>
+   
+    <blockTableStyle id="Table4">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <blockLeftPadding length="0"/>
+    </blockTableStyle>
+    <blockTableStyle id="TableTotales">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <blockLeftPadding length="0"/>
+    </blockTableStyle>
+    
+     <blockTableStyle id="TableLoop">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <blockLeftPadding length="0"/>
+    </blockTableStyle>
+ 
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica" alignment="RIGHT"/>
+    <paraStyle name="P2" fontName="Helvetica" alignment="RIGHT"/>
+    <paraStyle name="P3" rightIndent="0.0" leftIndent="0.0" fontName="Arial-Bold" fontSize="8.0" leading="1" alignment="RIGHT" spaceAfter="0.0" spaceBefore="0.0"/>
+    <paraStyle name="P4" rightIndent="0.0" leftIndent="0.0" fontName="Courier-Bold" fontSize="7.0" leading="1" alignment="RIGHT" spaceAfter="0.0" spaceBefore="0.0"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading2" fontName="Courier-Bold" fontSize="7.0"  alignment="CENTER"/>
+    <paraStyle name="Heading" fontName="Arial-Bold" fontSize="8.0"  alignment="CENTER"/>
+    <paraStyle name="Text body" fontName="Arial" fontSize="8.0" leading="0" spaceBefore="0.0" spaceAfter="0.0" leftIndent="0.0" alignment="LEFT"/>
+   <images/>
+  </stylesheet>
+  <story>
+    <section>
+          <para style="Text body">[[repeatIn(objects,'ss')]]</para>
+          <blockTable colWidths="7.0cm" style="TableTotales">
+	     <tr>
+		<td>
+          	    <para style="Text body" alignment="CENTER">////////////////////////////////////////////</para>
+		</td>
+	     </tr>
+	     <tr>
+		<td>
+          	    <para style="Text body" alignment="CENTER"></para>
+		</td>
+	     </tr>
+	  </blockTable>
+          
+          <para style="Heading">[[ss.user_id.company_id.name]]</para>
+          <para style="Heading">Tienda: [[ ss.config_id.shop_id.name ]]</para>
+          <para style="Heading">Caja : [[ ss.config_id.name ]]</para>
+          <para style="Heading">Cajero : [[ ss.user_id.name ]]</para>
+
+          <blockTable colWidths="2.1cm,2.1cm,2.1cm" style="TableLoop">
+            <tr>
+              <td>
+                <para style="Heading">No. Sesion: [[ ss.name ]] </para>
+              </td>
+              <td>
+                <para style="Heading">Apertura: [[ ss.start_at ]] </para>
+              </td>
+              <td>
+                <para style="Heading">Cierre: [[ ss.stop_at ]]</para>
+              </td>
+            </tr>
+          </blockTable>
+          <blockTable colWidths="7.0cm" style="TableTotales">
+	     <tr>
+		<td>
+          	    <para style="Text body" alignment="CENTER">DETALLE</para>
+		</td>
+	     </tr>
+	     <tr>
+		<td>
+          	    <para style="Text body" alignment="CENTER">===============================================</para>
+		</td>
+	     </tr>
+	  </blockTable>
+ 
+
+          <blockTable colWidths="3.5cm,1.8cm" style="Table4">
+            <tr>
+              <td>
+                <para style="Text body">Num Ticket</para>
+              </td>
+              <td>
+                <para style="P3">TOTAL</para>
+              </td>
+            </tr>
+          </blockTable>
+          <section>
+                <para style="Text body">[[repeatIn(ss.order_ids,'order_ids')]]</para>
+                <para style="Text body">[[ss.order_ids!=[] and removeParentNode('para') or removeParentNode('section')]]</para>
+                 <blockTable colWidths="3.5cm,1.8cm" style="Table4">
+                  <tr>
+		    <td>
+		      <para style="Text body">[[ order_ids.pos_reference ]]</para>
+		    </td>
+		    <td>
+                      <para style="P3">[[ formatLang(order_ids.amount_total, currency_obj=company.currency_id) ]]</para> 
+                    </td>
+                  </tr>
+                </blockTable>
+<!--
+                <blockTable colWidths="194.0" style="Table4">
+                  <tr>
+                    <td>
+                      <para style="Text body">[[repeatIn(order_ids.statement_ids,'statement_ids')]]</para>
+                      
+                     <blockTable colWidths="152,46.0" style="Table4">
+                        <tr>
+                          <td>
+                            <para style="Text body">[[ statement_ids.journal_id.name[:5] ]] </para>
+                          </td>
+                          <td>
+                            <para style="P3">[[ statement_ids.amount ]]</para>
+                          </td>
+                        </tr>
+                     </blockTable>
+                   </td>
+                  </tr>
+                </blockTable>
+-->
+	  </section>
+	
+          <blockTable colWidths="7.0cm" style="TableTotales">
+	     <tr>
+		<td>
+          	    <para style="Text body" alignment="CENTER">TOTALES</para>
+		</td>
+	     </tr>
+	     <tr>
+		<td>
+          	    <para style="Text body" alignment="CENTER">===============================================</para>
+		</td>
+	     </tr>
+	  </blockTable>
+
+
+          <blockTable colWidths="3.5cm,1.8cm" style="TableTotales">
+           <tr>
+          	   <td>
+	              <para style="Text body">Total de Productos:</para>
+	             </td>
+	             <td>
+                     <para style="P3"> [[ '%d' % getsalestotal(ss.order_ids) ]]</para>
+	             </td>
+           </tr>
+
+           <tr>
+                   <td>
+                   <para style="Text body">Total No Facturado:</para>
+                   </td>
+                   <td>
+                       <para style="P3">[[ formatLang(gettotalofthaday(ss.order_ids)-getsuminvoice(ss.order_ids), currency_obj=company.currency_id) ]]</para>
+                   </td>
+           </tr>
+           <tr>
+                   <td>
+                       <para style="Text body">Total Facturado:</para>
+                   </td>
+                   <td>
+                       <para style="P3">[[ formatLang(getsuminvoice(ss.order_ids), currency_obj=company.currency_id) ]]</para>
+                   </td>
+           </tr>
+
+           <tr>
+	            <td>
+                    <para style="Text body">Total del Dia:</para>
+                    </td>
+                    <td>
+                    <para style="P3">[[ formatLang( gettotalofthaday(ss.order_ids), currency_obj=company.currency_id) ]]</para>
+                    </td>
+           </tr>
+           <tr>
+	            <td>
+                    <para style="Text body">Total Devoluciones:</para>
+	            </td>
+                    <td>
+                    <para style="P3">[[ formatLang( getdevols(ss.order_ids), currency_obj=company.currency_id) ]]</para>
+                    </td>
+           </tr>
+
+
+
+           </blockTable> 
+
+          <blockTable colWidths="7.0cm" style="TableTotales">
+
+	     <tr>
+		<td>
+          	    <para ></para>
+		</td>
+	     </tr>
+	     <tr>
+		<td>
+          	    <para style="Text body" alignment="CENTER">Totales por Tipo de Pago</para>
+		</td>
+	     </tr>
+	     <tr>
+		<td>
+          	    <para style="Text body" alignment="CENTER">===============================================</para>
+		</td>
+	     </tr>
+	  </blockTable>
+		
+             <section>
+
+                 <para style="Text body">[[ repeatIn(getpayments(ss.order_ids).items(),'t') ]]</para>
+                 <para style="Text body">[[ss.order_ids!=[] and removeParentNode('para') or removeParentNode('section')]]</para>
+                 <blockTable colWidths="3.5cm,1.8cm" style="Table4">
+                   <tr>
+                      <td>
+                         <para style="Text body">[[ t[0].name ]]</para>
+                      </td>
+                      <td>
+                         <para style="P3">[[ formatLang(t[1], currency_obj=company.currency_id) ]]</para>
+                      </td>
+                   </tr>
+                 </blockTable>
+            </section>   
+     </section>
+    </story>
+</document>

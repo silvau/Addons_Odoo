@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template pageSize="(3in,4in)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+       <frame 
+       id="first" 
+       x1="0.1in" 
+       y1="0.1in" 
+       height="3.8in"
+       width="2.8in" 
+       last="true"/>
+
+
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table2">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table4">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEBELOW" colorName="#808080" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#808080" start="1,-1" stop="1,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table3">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,2" stop="1,2"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,2" stop="2,2"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table5">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Helvetica"/>
+    <paraStyle name="P2" fontName="Helvetica" fontSize="9.0" leading="13" alignment="CENTER"/>
+    <paraStyle name="P3" fontName="Helvetica" fontSize="10.0" leading="13" alignment="LEFT"/>
+    <paraStyle name="P4" fontName="Helvetica" fontSize="2.0" leading="3" alignment="LEFT"/>
+    <paraStyle name="P5" fontName="Helvetica-Bold" fontSize="18.0" leading="22" alignment="CENTER"/>
+    <paraStyle name="P6" fontName="Helvetica" fontSize="8.0" leading="13" alignment="LEFT"/>
+    <paraStyle name="P7" fontName="Helvetica" fontSize="10.0" leading="13" alignment="CENTER"/>
+    <paraStyle name="P8" fontName="Helvetica" fontSize="10.0" leading="13"/>
+    <paraStyle name="P9" fontName="Helvetica" fontSize="10.0" leading="13" alignment="LEFT"/>
+    <paraStyle name="P10" fontName="Helvetica" fontSize="10.0" leading="13" alignment="CENTER"/>
+    <paraStyle name="P11" fontName="Helvetica-Bold" fontSize="10.0" leading="13" alignment="RIGHT"/>
+    <paraStyle name="P12" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT"/>
+    <paraStyle name="P13" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P14" rightIndent="0.0" leftIndent="-3.0" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P15" fontName="Helvetica-Bold" fontSize="10.0" leading="13" alignment="CENTER"/>
+    <paraStyle name="Standard" fontName="Helvetica"/>
+    <paraStyle name="Heading" fontName="Helvetica" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Text body" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Helvetica" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Helvetica" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Helvetica"/>
+    <paraStyle name="Table Contents" fontName="Helvetica"/>
+    <paraStyle name="Table Heading" fontName="Helvetica" alignment="CENTER"/>
+    <paraStyle name="terp_header" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="terp_default_8" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Right_8" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Right_9" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_8" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_9" rightIndent="0.0" leftIndent="-3.0" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_Right_9" rightIndent="0.0" leftIndent="-3.0" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <images/>
+  </stylesheet>
+  <story>
+    <para style="P1">[[repeatIn(objects,'sesion')]]</para>
+    <para style="P1">[[setLang(sesion.user_id.lang) ]]</para>
+    <para style="P10">[[ (data['form']['movement_type']  == 'cash.box.out' or removeParentNode('para')) and 'COMPROBANTE DE SALIDA DE CAJA' ]]</para>
+    <para style="P2">[[ (data['form']['movement_type']  == 'cash.box.in' or removeParentNode('para')) and 'COMPROBANTE DE ENTRADA DE CAJA' ]]</para>
+    <para style="P10">[[ '=======================' ]]</para>
+<!--    <para style="P6">Fecha: [[ time.strftime("%Y-%m-%d %X") ]]</para> -->
+    <para style="P6">Fecha: [[ get_my_date(sesion.user_id.tz) ]]</para>
+    <para style="P6">Sesión: [[ (sesion.name) ]]</para>
+    <para style="P6">Responsable: [[ (sesion.user_id.name) ]]</para>
+    <para style="P6">Caja: [[ (sesion.config_id.name) ]]</para>
+    <para style="P6">Apertura: [[ (sesion.start_at) ]]</para>
+    <para style="P6">Estado Actual: [[ (sesion.state) ]]</para>
+    <para style="P6">Referencia:  [[ sesion.statement_ids[0].name ]]</para>
+
+    <section>
+     <blockTable colWidths="2.8in">
+        <tr>
+          <td>
+
+            <para style="P10">Entregué la cantidad de [[ (data['form']['movement_type']  == 'cash.box.in' or removeParentNode('para')) and  sesion.user_id.company_id.currency_id.symbol +formatLang(data['form']['amount'],2) ]]</para>
+            <para style="P10">Recibí la cantidad de [[ (data['form']['movement_type']  == 'cash.box.out' or removeParentNode('para')) and  sesion.user_id.company_id.currency_id.symbol +formatLang(data['form']['amount'],2) ]]</para>
+          </td>
+         </tr>
+         <tr>
+          <td>
+            <para style="P6">[[ (data['form']['movement_type']  == 'cash.box.out' or removeParentNode('para')) and 'Motivo de la Salida : ' ]]</para>
+            <para style="P6">[[ (data['form']['movement_type']  == 'cash.box.in' or removeParentNode('para')) and 'Motivo de la Entrada : ' ]]</para>
+          </td>
+         </tr>
+          <tr>
+          <td>
+            <para style="P6">[[ data['form']['name'] ]]</para>
+          </td>
+         </tr>
+         <tr>
+          <td>
+          </td>
+         </tr>
+         <tr>
+          <td>
+            <para style="P7">___________________________________</para>
+          </td>
+         </tr>
+          <tr>
+          <td>
+            <para style="P7">Firma quien recibe el efectivo</para>
+          </td>
+         </tr>
+   
+    </blockTable>
+    </section>
+  </story>
+</document>
