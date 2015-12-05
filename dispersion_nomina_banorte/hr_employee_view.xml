@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+       <record id="view_hr_form_dispersion_banorte" model="ir.ui.view">
+            <field name="name">hr_dispersion_banorte_form</field>
+            <field name="model">hr.employee</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+               <field name="bank_account_id" position="after">            
+                        <field name="tipo_cuenta"/>
+               </field>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

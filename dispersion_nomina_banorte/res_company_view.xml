@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+       <record id="view_company_form_dispersion_banorte" model="ir.ui.view">
+            <field name="name">dispersion_banorte_form</field>
+            <field name="model">res.company</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Dispersion Banorte">
+                        <group>
+                        <field name="emisora" colspan="4"/>
+                        <field name="cod_serv" colspan="4"/>
+                        </group>
+                        <group/>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

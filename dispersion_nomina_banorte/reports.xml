@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <report
+            id="report_invoice_client_payments"
+            string="Client Payments"
+            model="account.voucher"
+            name="invoice_client_payments"
+            rml="invoice_client_payments_report/report/invoice_client_payments_report.rml"
+            header="False"
+            menu="False"
+/>
+    </data>
+</openerp>

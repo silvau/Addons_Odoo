@@ -1,0 +1,11 @@
+
+<templates>
+    <t t-extend="ProductWidget">
+        <t t-jquery=".product-name" t-operation="replace">
+               <div class="product-name">
+                    <t t-esc="'['+(widget.model.get('default_code') || '')+']'+widget.model.get('name')"/>
+               </div>
+       </t>
+   </t>
+
+</templates>

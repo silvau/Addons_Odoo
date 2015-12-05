@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <record id="view_hr_payslip_dispersion_banorte" model="ir.ui.view">
+            <field name="name">Banorte Dispersion</field>
+            <field name="model">hr.payslip_dispersion_banorte</field>
+            <field name="arch" type="xml">
+                <form string="Generar Dispersion" version="7.0">
+                    <group>
+                        <field name="fecha_proceso" string="Fecha Proceso"/>
+                        <field name="consecutivo" on_change="onchange_consecutivo(consecutivo)"/>
+                    </group>
+                    <group>
+                        <field name="payslip_run" string="Seleccionar Nominas" />
+                    </group>
+                    <group>
+                        <button name="generate_file" type="object" string="Generate file" icon="gtk-execute"/>
+                        <field name="txt_filename" invisible="1"/>
+                       <h1><field name="txt_binary" nolabel="1" filename="txt_filename" readonly="1"/></h1>
+                    </group>
+                    <footer>
+                        <button type="special" special="cancel" string="Cerrar" icon="gtk-cancel"/>
+                    </footer>
+
+ 
+                </form>
+            </field>
+         </record>
+
+        <record id="action_hr_payslip_dispersion_banorte" model="ir.actions.act_window">
+            <field name="name">Banorte Dispersion</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.payslip_dispersion_banorte</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_hr_payslip_dispersion_banorte"/>
+            <field name="target">new</field>
+        </record>
+
+       <menuitem action="action_hr_payslip_dispersion_banorte" id="menu_hr_payslip_dispersion_banorte" parent="hr_payroll.menu_hr_root_payroll" sequence="6"/>
+
+
+    </data>
+</openerp>

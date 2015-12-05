@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            id="report_pos_details_product"
+            string="Details"
+            model="pos.order"
+            name="pos.details_products"
+            rml="pos_products_report/report/pos_details_products.rml"
+            header="False" 
+            menu="True"
+            auto="False"
+
+       />
+    </data>
+</openerp>

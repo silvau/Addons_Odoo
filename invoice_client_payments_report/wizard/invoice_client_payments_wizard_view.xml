@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_invoice_client_payments" model="ir.ui.view">
+            <field name="name">Invoice Client Payments</field>
+            <field name="model">invoice.client_payments</field>
+            <field name="arch" type="xml">
+                <form string="Invoice Client Payments" version="7.0">
+                    <group col="4" string="Dates">
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                    </group>
+                    <field name="user_ids"/>
+                    <footer>
+                        <button name="print_report" type="object" string="Print Report" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_report_invoice_client_payments" model="ir.actions.act_window">
+            <field name="name">Invoice Client Payments</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">invoice.client_payments</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+       <menuitem action="action_report_invoice_client_payments" id="menu_report_invoice_client_payments" parent="point_of_sale.menu_point_rep" sequence="6"/>
+
+
+    </data>
+</openerp>

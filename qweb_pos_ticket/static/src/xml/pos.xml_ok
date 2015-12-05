@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim:fdl=1:
+-->
+<templates id="template" xml:space="preserve">
+   <!--  Reçu de paiement / ticket de caisse -->
+    <t t-extend="PosTicket" >
+        <t t-jquery=".pos-sale-ticket" t-operation="replace">
+            <div class="pos-sale-ticket">
+                <div id="header-ticket">
+                    <div id="logo_ticket">
+                 <!--        <img src="tg_pos_enhanced/static/src/img/logo_ticket.png" />  -->
+                    </div>
+                    Fecha :<t t-esc="new Date().toString(Date.CultureInfo.formatPatterns.shortDate)"/> 
+                    <br />
+                    Ticket :<t t-esc="widget.currentOrder.attributes.name"/>
+                    <br />
+                    Tienda : <t t-esc="widget.shop_obj.name"/>
+                    <br />
+                    Cajero : <t t-esc="widget.user.name"/>
+
+	            <br />
+		    <t t-set="tpv" t-value="widget.pos.get('pos_config')"/>
+		    <t t-set="tpvname" t-value="tpv.name"/>
+                    Caja : <t t-esc="tpvname.substr(0,7)"/>
+	            <br />
+                </div>
+                <table>
+                    <colgroup>
+                        <col width='30%' />
+                        <col width='30%' />
+                        <col width='30%' />
+                        <col width='20%' />
+                    </colgroup>
+                    <tr class="ticket_head_lines">
+                        <td>Codigo</td>
+                        <td>Descripcion</td>
+                        <td class="pos-right-align">Cant.</td>
+                        <td class="pos-right-align">Amount</td>
+                    </tr>
+                    <tr t-foreach="widget.currentOrderLines.toArray()" t-as="orderline">
+			<td>
+                            <t t-esc="orderline.get_product().get('default_code')"/>
+			</td>
+                        <td>
+                            <t t-esc="orderline.get_product().get('name')"/>
+                             <t t-if="orderline.get_discount() > 0">
+                                <div class="pos-disc-font">
+                                    Con un <t t-esc="orderline.get_discount()"/>% descuento
+                                </div>
+                            </t>
+                        </td>
+                        <td class="pos-right-align">
+                            <t t-esc="orderline.get_quantity_str_with_unit()"/>
+                        </td>
+                        <td class="pos-right-align">
+                            <t t-esc="widget.format_currency(orderline.get_display_price())"/>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <div class="horizontal-line-gray"></div>
+                        </td>
+                    </tr>
+                    <tr class="emph">
+                        <td>Subtotal:</td>
+                        <td class="pos-right-align">
+                            <t t-esc="widget.format_currency(widget.currentOrder.getSubtotal())"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="horizontal-line-space"></div>
+                        </td>
+                    </tr>
+                  
+                    <t t-if="widget.currentOrder.getDiscountTotal() != 0">
+                        <tr>
+                            <td colspan="2">
+                                <div class="horizontal-line-gray"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Descuento Total:</td>
+                            <td class="pos-right-align">
+                                <t t-esc="widget.format_currency(widget.currentOrder.getDiscountTotal())"/>
+                            </td>
+                        </tr>   
+                    </t>
+                    <tr>
+                        <td colspan="2">
+                            <div class="horizontal-line-space"></div>
+                        </td>
+                    </tr>    
+                    <tr class="emph">
+                        <td>Total:</td>
+                        <td class="pos-right-align">
+                            <t t-esc="widget.format_currency(widget.currentOrder.getTotalTaxIncluded())"/>
+                        </td>
+                    </tr>
+		    <tr>
+                        <td colspan="2">
+                            <div class="horizontal-line-gray"></div>
+                        </td>
+                    </tr>
+		    <br />
+		    <tr class="emph">
+			<td>FORMA DE PAGO</td>
+		    </tr>
+		</table>
+                <table>
+                    <tr t-foreach="widget.currentPaymentLines.toArray()" t-as="pline">
+                        <td>
+                            <t t-esc="pline.get_cashregister().get('journal_id')[1]"/>
+                        </td>
+                        <td class="pos-right-align">
+                            <t t-esc="widget.format_currency(pline.get_amount())"/>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table>
+                    <tr>
+                        <td>Cambio:</td>
+                        <td class="pos-right-align">
+                            <t t-esc="widget.format_currency(widget.currentOrder.getPaidTotal() - widget.currentOrder.getTotalTaxIncluded())"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="horizontal-line-gray"></div>
+                            <div class="horizontal-line-space"></div>
+                        </td>
+                    </tr> 
+                </table>
+               <div id="ticket_bottom_comment">
+                   
+                    <strong>LAS PALMAS</strong>
+                	<br />
+	   <strong><t t-esc="widget.currentOrder.attributes.lugar"/></strong>
+                	<br />
+                    <strong>GRACIAS POR SU PREFERENCIA</strong>
+                	<br />
+                    <strong>TEL: 712-2865</strong>
+		
+                </div>
+            </div>
+        </t>
+    </t>
+
+   <!--  Numpad -->
+    <t t-extend="NumpadWidget" >
+        <t t-jquery="#numpad" t-operation="replace">
+            <div id="numpad">
+                <button class="input-button number-char">7</button>
+                <button class="input-button number-char">8</button>
+                <button class="input-button number-char">9</button>             
+                <button class="mode-button" data-mode='quantity'>Qty</button>
+                <br />
+                <button class="input-button number-char">4</button>
+                <button class="input-button number-char">5</button>
+                <button class="input-button number-char">6</button>
+                <button class="input-button" id="numpad-return" title="Devolucion" disabled="disabled">
+                <img src="qweb_pos_ticket/static/src/img/disabled_return_product.png" width="24" height="21"/>
+                </button>
+                <br />
+                <button class="input-button number-char">1</button>
+                <button class="input-button number-char">2</button>
+                <button class="input-button number-char">3</button>
+                <button class="input-button" disabled="disabled"></button>
+                
+                <br />
+                <button class="input-button" disabled="disabled"></button>
+                <button class="input-button number-char">0</button>
+                <button class="input-button number-char">.</button>
+                <button class="input-button" id="numpad-backspace">
+                    <img src="/point_of_sale/static/src/img/backspace.png" width="24" height="21" />
+                </button>
+                
+                <br />
+            </div>
+        </t>
+    </t> 
+        
+</templates>
