@@ -80,6 +80,8 @@ class hr_payslip_dispersion_banorte(osv.osv_memory):
                     partes=(str)(cantidad).split('.')
                     parte_decimal=partes[1][:2]
                     parte_entera=partes[0]
+                    if len(parte_decimal)<2:
+                        parte_decimal= parte_decimal + "0"
                     if len(parte_entera) > 13 :
                         parte_entera=parte_entera[:13]
                     if len(parte_entera) < 13:
@@ -112,6 +114,8 @@ class hr_payslip_dispersion_banorte(osv.osv_memory):
             num_regs_str="0"*(6-len(num_regs_str))+num_regs_str
         partes=(str)(amount_regs).split('.')
         parte_decimal=partes[1][:2]
+        if len(parte_decimal) < 2 :
+            parte_decimal=parte_decimal+"0"
         parte_entera=partes[0]
         if len(parte_entera) > 13 :
             parte_entera=parte_entera[:13]
