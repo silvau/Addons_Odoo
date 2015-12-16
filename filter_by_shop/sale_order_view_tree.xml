@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+       <record id="filter_by_shop_sale_view_tree" model="ir.ui.view">
+            <field name="name">filterbyshop.sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                        <field name="shop_id" string="Tienda"/>
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

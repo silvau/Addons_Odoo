@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+       <record id="view_users_form_journals" model="ir.ui.view">
+            <field name="name">res.users.form</field>
+            <field name="model">res.users</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Shops">
+                        <field name="shops" colspan="4" />
+                    </page>
+                </notebook>
+            </field>
+        </record>
+        
+    </data>
+</openerp>

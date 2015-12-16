@@ -1,0 +1,4 @@
+"id","model_id/id","name","global","groups/id","domain_force","perm_create","perm_unlink","perm_write","perm_read"
+"filter_by_shop.regla_users","sale.model_sale_order","Ordenes Permitidas Tiendas","False","filter_by_shop.group_my_shop_leads","['|',('shop_id','in',[g.id for g in user.shops]),('shop_id','=',False)]","True","True","True","True"
+"filter_by_shop.regla_invoices","account.model_account_invoice","Facturas Permitidas Tiendas","False","filter_by_shop.group_my_shop_leads","['|',('shop_id','in',[g.id for g in user.shops]),('shop_id','=',False)]","True","True","True","True"
+"filter_by_shop.regla_shops","sale.model_sale_shop","Tiendas Permitidas","False","filter_by_shop.group_my_shop_leads","[('id','in',[g.id for g in user.shops])]","True","True","True","True"
