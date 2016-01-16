@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_pos_order_form_inherit" model="ir.ui.view">
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <field name="price_subtotal_incl" position="after">
+                    <field name="seller_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_pos_config_form_inherit" model="ir.ui.view">
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@string='Material Interfaces']" position="after">
+                    <group>
+                        <group string="Discount on Amount">
+                            <field name="discount_amount"/>
+                            <field name="discount_journal_id"/>
+                            <field name="discount_percent"/>
+                        </group>
+                        <group string="Discount on INAPAM/Distinguished">
+                            <field name="discount_inapam_percent"/>
+                        </group>
+                        <group string="Discount on Quantity">
+                            <field name="discount_quantity"/>
+                            <field name="discount_quantity_percent"/>
+                        </group>
+                        <group string="Special discount">
+                            <field name="special_discount_password" password="1"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_pos_category_form_inherit" model="ir.ui.view">
+            <field name="model">pos.category</field>
+            <field name="inherit_id" ref="point_of_sale.pos_category_form_view"/>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="attributes">
+                    <attribute name="on_change">on_change_parent_id(parent_id)</attribute>
+                </field>
+                <field name="sequence" position="after">
+                    <field name="is_auction"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

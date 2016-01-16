@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_report_pos_order_tree_inherit" model="ir.ui.view">
+            <field name="name">report.pos.order.tree.inherit</field>
+            <field name="model">report.pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_report_pos_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="seller_id" invisible="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_report_pos_order_search_inherit" model="ir.ui.view">
+            <field name="name">report.pos.order.search.inherit</field>
+            <field name="model">report.pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_report_pos_order_search"/>
+            <field name="arch" type="xml">
+                <field name="user_id" position="after">
+                    <field name="seller_id"/>
+                </field>
+                <xpath expr="//filter[@name='User']" position="after">
+                    <filter string="Seller" icon="terp-personal" name="Seller" context="{'group_by':'seller_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="point_of_sale.action_report_pos_order_all" model="ir.actions.act_window">
+            <field name="context">{'search_default_year':1,'search_default_today':1,'group_by_no_leaf':1,'group_by':['seller_id', 'product_id']}</field>
+        </record>
+    </data>
+</openerp>

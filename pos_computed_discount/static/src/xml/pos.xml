@@ -1,0 +1,117 @@
+<templates>
+
+    <t t-name="PosWidget">
+        <div class="point-of-sale">
+            <div id="topheader">
+                <div id="branding">
+                    <img src="/point_of_sale/static/src/img/logo.png" />
+                    <span class="placeholder-UsernameWidget"></span>
+                </div>
+                <div id="rightheader">
+                    <div id="order-selector">
+                        <button class="neworder-button">+</button>
+                        <ol id="orders"></ol>
+                    </div>
+                    <!-- here goes header buttons -->
+                </div>
+            </div>
+            <div id="content">
+
+                <div id="leftpane">
+                    <div id="placeholder-OrderWidget"></div>
+                    <footer>
+                        <div id="placeholder-PaypadWidget"></div>
+                        <div id="placeholder-NumpadWidget"></div>
+                        <div id="placeholder-ExtraButtonWidget"></div>
+                        <div id="placeholder-ExtraButtonWidget2"></div>
+                    </footer>
+                </div>
+                <div id="rightpane">
+                </div>
+            </div>
+            <div class="loader">
+            </div>
+            &lt;!--[if IE]&gt;
+            <div class='not-supported-browser'>
+                <div class='message'>
+                    <img src='/point_of_sale/static/src/img/pos_screenshot.jpg' />
+                    <p>
+                        The Point of Sale is not supported by Microsoft Internet Explorer. Please use
+                        a modern browser like <a href="http://www.mozilla.org/firefox/" target="_blank">Mozilla Firefox</a>
+                        or <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a>.
+                    </p>
+                </div>
+            </div>
+            &lt;![endif]--&gt;
+        </div>
+    </t>
+
+    <t t-name="PaypadExtraButtonWidget">
+        <button class="paypad-button"></button>
+        <br />
+    </t>
+
+    <t t-name="PaypadExtraWidget">
+        <div id="paypad-extra"></div>
+        <!--<t t-if="widget.pos.get('cashRegisters').length lt 4">
+            <div id="paypad-extra" style="position:absolute;bottom:0;"></div>
+        </t>
+        <t t-if="widget.pos.get('cashRegisters').length gte 4">
+            <div id="paypad-extra"></div>
+        </t>-->
+    </t>
+
+    <t t-name="SalesmanPopupWidget">
+        <div class="modal-dialog">
+            <div class="popup popup-zenpar">
+                <h2>Seller</h2>
+                <p class="message">
+                    Please select seller of this item
+                </p>
+                <select id="seller_id" name="seller_id">
+                </select>
+                <div class="footer">
+                    <div class="button salesman-cancel">
+                        Cancel
+                    </div>
+                    <div class="button salesman-confirm">
+                        Confirm
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+    
+    <t t-name="SpecialDiscountPopupWidget">
+        <div class="modal-dialog">
+            <div class="popup popup-zenpar">
+                <h2>Discount</h2>
+                <p class="message">
+                    Please select type of discount
+                </p>
+                <select id="special_discount_type" name="special_discount_type">
+                    <option value="amount">Monto</option>
+                    <option value="percent">Porcentaje</option>
+                </select><br/>
+                <p class="message">
+                    Please enter discount
+                </p>
+                <input type="text" id="special_discount_amount" name="special_dicount_amount"/>
+                <br/>
+                <p class="message">
+                    User password
+                </p>
+                <input type="password" id="special_discount_password" name="special_discount_password"/>
+                <div class="footer">
+                    <div class="button special-discount-cancel">
+                        Cancel
+                    </div>
+                    <div class="button special-discount-confirm">
+                        Confirm
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>
