@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="reporte_view_tree" model="ir.ui.view">
+            <field name="name">reporte.view.tree</field>
+            <field name="model">reporte_almacenes.reporte</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <tree string="Productos por almacen" version="7.0">
+                </tree>
+            </field>
+        </record>
+    </data>
+    
+    <data>
+        <record id="grupo_reporte_almacenes" model="res.groups">
+            <field name="name">Existencias por almacén</field>
+        </record>
+        
+        <menuitem name="Existencias" id="menu_existencias_main" parent="" sequence="65"
+          groups="grupo_reporte_almacenes"/>
+        <menuitem name="Existencias" id="menu_existencias" parent="menu_existencias_main"/>
+        
+        <record id="reporte_view_search" model="ir.ui.view">
+            <field name="name">reporte.view.search</field>
+            <field name="model">reporte_almacenes.reporte</field>
+            <field name="arch" type="xml">
+                <search string="Productos por almacen" version="7.0">
+                    <field name="name"/>
+                    <field name="default_code"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="act_open_reporte" model="ir.actions.act_window">
+            <field name="name">Existencias por almacén</field>
+            <field name="res_model">reporte_almacenes.reporte</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="reporte_view_tree"/>
+            <field name="search_view_id" ref="reporte_view_search"/>
+            <field name="context">{'por_almacen': True}</field>
+        </record>
+        
+        <!--<record id="act_open_reporte_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="reporte_view_tree"/>
+            <field name="act_window_id" ref="act_open_reporte"/>
+        </record>-->
+        
+        <!--<record id="act_open_reporte_view_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="reporte_almacenes.reporte_normal_form_view"/>
+            <field name="act_window_id" ref="act_open_reporte"/>
+        </record> -->
+
+        <menuitem action="act_open_reporte" id="menu_open_reporte"
+            parent="menu_existencias" sequence="1"/>       
+
+    </data>
+</openerp>
+
