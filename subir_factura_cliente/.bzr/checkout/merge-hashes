@@ -1,0 +1,15 @@
+BZR merge-modified list format 1
+file_id: res_partner_view.xml-20151013010634-iymf7af0vba1dr6b-2
+hash: 17c59ecf6f05c54db5e90326d73b213bc63e6547
+
+file_id: __init__.py-20140627201429-f9jniwkdxxwd4mtx-1
+hash: 94b759d64a434df6971e9a85b2168320c81184df
+
+file_id: invoice.py-20141016052048-i9p99nq2k2ro902d-1
+hash: 87dd2e35869227d8dc1043bbc5839a7c32737239
+
+file_id: res_partner.py-20151013010634-iymf7af0vba1dr6b-1
+hash: 37d171dc4930c112bdbc3ff86fbb8148d8b13c37
+
+file_id: __openerp__.py-20140627201429-f9jniwkdxxwd4mtx-2
+hash: 11340fb9c76367cdbbe8d02d29fd335906ba7d7d

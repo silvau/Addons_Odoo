@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+        <record model="ir.ui.view" id="import_fac_wizard_form">
+            <field name="name">import.fac.wizard.form</field>
+            <field name="model">subir_factura.import.fac</field>
+            <field name="arch" type="xml">
+                <form string="Importar factura" version="7.0">
+                    <group attrs="{'invisible':[('codigo','!=',False)]}">
+                        <field name="xml"/>
+                        <field name="pdf"/>
+                        <button name="action_subir" type="object" string="Subir archivos"/>
+                    </group>
+                    <group attrs="{'invisible':[('codigo','=',False)]}">
+                        <field name="codigo" readonly="1"/>
+                        <field name="estado" readonly="1"/>
+                        <field name="ok" invisible="1"/>
+                    </group> 
+                    <group attrs="{'invisible':[('codigo','=',False)]}">
+                        <field name="moneda" style="width:40%%" attrs="{'required':[('codigo','!=',False)]}"/>
+                    </group>
+                    <footer>
+                        <button type="special" special="cancel" string="Close" icon="gtk-cancel"/>
+                        <button type="object" name="action_procesar" string="Aceptar" icon="gtk-ok"
+                            attrs="{'invisible':[('ok','=',False)]}"/>
+                    </footer>
+                </form>
+            </field>
+       </record>
+    
+        <record id="action_import_fac" model="ir.actions.act_window">
+            <field name="name">Imp Fact Cliete desde CFDI</field>
+            <field name="res_model">subir_factura.import.fac</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="import_fac_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_import_fac" id="menu_import_fac_cli"
+            parent="account.menu_finance_receivables" sequence="999"/>
+        
+    </data>
+</openerp>    
+
+
+
