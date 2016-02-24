@@ -132,8 +132,8 @@ class import_fac(osv.TransientModel):
         data["date_invoice"] = root.attrib["fecha"].split("T")[0]
         data["hora_factura"] = root.attrib["fecha"].split("T")[1]
         data["sello"] = root.attrib["sello"]
-        data["cuentaBanco"] = root.attrib["NumCtaPago"]
-        data["tipo_cambio"] = root.attrib["TipoCambio"]
+        data["cuentaBanco"] = 'NumCtaPago' in root.attrib and root.attrib["NumCtaPago"] or ""
+        data["tipo_cambio"] = 'TipoCambio' in root.attrib and root.attrib["TipoCambio"] or 1.0
         if root.attrib.get("folio", False):
             data["origin"] = root.attrib["folio"]
         descuento = root.attrib.get("descuento", None)
