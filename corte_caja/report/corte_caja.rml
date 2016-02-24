@@ -69,10 +69,10 @@
                 <para style="Heading">No. Sesion: [[ ss.name ]] </para>
               </td>
               <td>
-                <para style="Heading">Apertura: [[ ss.start_at ]] </para>
+                <para style="Heading">Apertura: [[ formatLang(ss.start_at, date_time=True) ]] </para>
               </td>
               <td>
-                <para style="Heading">Cierre: [[ ss.stop_at ]]</para>
+                <para style="Heading">Cierre: [[ formatLang(ss.stop_at, date_time=True) ]]</para>
               </td>
             </tr>
           </blockTable>
