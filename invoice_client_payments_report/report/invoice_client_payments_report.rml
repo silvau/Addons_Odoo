@@ -81,13 +81,46 @@
     <images/>
   </stylesheet>
   <story>
-    <para style="P6">[[ '=========PAGOS DE CLIENTES=========' ]]</para>
+    <para style="P6">[[ '=====CREDITOS Y PAGOS DE CLIENTES=====' ]]</para>
     <para style="P6">Fecha Inicial: [[ formatLang(data['form']['date_start'],date=True) ]]</para>
     <para style="P6">Fecha Final: [[ formatLang(data['form']['date_end'],date=True) ]]</para>
+    <para style="P6">[[ '=========CREDITOS CLIENTES=========' ]]</para>
   <blockTable colWidths="0.93in,0.93in,0.93in" style="Table1">
          <tr>
           <td>
-             <para style="P6">[[ 'USUARIO' ]]</para>
+             <para style="P6">[[ 'CLIENTE' ]]</para>
+          </td>
+           <td>
+             <para style="P6">[[ 'REFERENCIA' ]]</para>
+          </td>
+           <td>
+             <para style="P11">[[ 'MONTO' ]]</para>
+          </td>
+         </tr>
+    </blockTable>
+    <para style="P6">[[ '================================' ]]</para>
+<section>
+    <para style="P1">[[repeatIn(getInvoices(data['form']),'invoice')]]</para>
+      <blockTable colWidths="0.93in,0.93in,0.93in" style="Table1">
+         <tr>
+          <td>
+             <para style="P6">[[ invoice['client'] ]]</para>
+          </td>
+           <td>
+             <para style="P6">[[ invoice['origin'] ]]</para>
+          </td>
+           <td>
+             <para style="P11">[[ formatLang(invoice['amount'] , currency_obj = company.currency_id) ]]</para>
+          </td>
+         </tr>
+            
+    </blockTable>
+</section>
+    <para style="P6">[[ '=========PAGOS DE CLIENTES=========' ]]</para>
+  <blockTable colWidths="0.93in,0.93in,0.93in" style="Table1">
+         <tr>
+          <td>
+             <para style="P6">[[ 'CLIENTE' ]]</para>
           </td>
            <td>
              <para style="P6">[[ 'REFERENCIA' ]]</para>
@@ -103,7 +136,7 @@
       <blockTable colWidths="0.93in,0.93in,0.93in" style="Table1">
          <tr>
           <td>
-             <para style="P6">[[ payment['user'] ]]</para>
+             <para style="P6">[[ payment['client'] ]]</para>
           </td>
            <td>
              <para style="P6">[[ payment['number'] ]]</para>
@@ -115,25 +148,25 @@
             
     </blockTable>
 </section>
+
     <para style="P6">[[ '=============TOTALES=============' ]]</para>
-<section>
-    <para style="P1">[[ repeatIn(getTotalByUser() , 'totals') ]]</para>
-      <blockTable colWidths="1.4in,1.4in" style="Table1">
-         <tr>
-          <td>
-             <para style="P6">[[ totals['user'] ]]</para>
-          </td>
-           <td>
-             <para style="P11">[[ formatLang(totals['total'],currency_obj=company.currency_id) ]]</para>
-          </td>
-         </tr>
-    </blockTable>
-</section>
-    <para style="P6">[[ '================================' ]]</para>
        <blockTable colWidths="0.93in,0.93in,0.93in" style="Table1">
          <tr>
           <td>
-             <para style="P6">[['TOTAL' ]]</para>
+             <para style="P6">[['TOT CRED' ]]</para>
+          </td>
+           <td>
+          </td>
+           <td>
+             <para style="P11">[[ formatLang(getTotalInvoice() , currency_obj = company.currency_id) ]]</para>
+          </td>
+         </tr>
+    </blockTable>
+
+       <blockTable colWidths="0.93in,0.93in,0.93in" style="Table1">
+         <tr>
+          <td>
+             <para style="P6">[['TOT PAGOS' ]]</para>
           </td>
            <td>
           </td>
