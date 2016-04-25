@@ -19,19 +19,22 @@
 #
 ##############################################################################
 {
-    'name': 'Account Report Oisa',
+    'name': 'General Ledger by account',
     'description': """
+    This module agregates a sheet to the "account general ledger report by partner"
+    and allows to filter by an specific account. It agregates the "all accounts" option to the accounts filter2.
     """,
     'version': '1.1.0',
-    'author': "silvau,amptocamp,Odoo Community Association (OCA)",
+    'author': "silvau",
     'license': 'AGPL-3',
     'category': 'Finance',
     'website': 'http://www.zeval.com.mx',
     'depends': ['account',
-                'report_webkit'],
+                'report_webkit',
+                'account_financial_report_webkit_xls'],
     'data': [
              'wizard/partners_ledger_wizard_view.xml',
-             'report.xml',
+#             'report.xml',
              ],
     'active': False,
     'installable': True,

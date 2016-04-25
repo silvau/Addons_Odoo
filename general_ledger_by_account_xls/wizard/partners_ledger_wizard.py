@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    OpenERP, Open Source Management Solution
-#
-#    Copyright (c) 2013 Noviat nv/sa (www.noviat.com). All rights reserved.
+#    Author: Nicolas Bessi, Guewen Baconnier
+#    Copyright Camptocamp SA 2011
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,15 +18,34 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import time
 
-from openerp.osv import orm
-# import logging
-# _logger = logging.getLogger(__name__)
-import pdb
+from openerp.osv import fields, orm
 
-from openerp.addons.account_financial_report_webkit_xls.wizard.partners_ledger_wizard \
-    import partner_ledger_webkit_wizard
-class partner_ledger_webkit_wizard_oisa(partner_ledger_webkit_wizard):
+class AccountReportPartnersLedgerWizard(orm.TransientModel):
+
+    """Will launch partner ledger report and pass required args"""
+
+    _inherit = "partners.ledger.webkit"
+
+    _columns = {
+        'account_ids': fields.many2many(
+            'account.account',
+            string='Filter on accounts',
+            help="Only selected accounts will be printed. "
+            "Leave empty to print all accounts."),
+    }
+    
+    def pre_print_report(self, cr, uid, ids, data, context=None):
+        data = super(AccountReportPartnersLedgerWizard, self).pre_print_report(
+            cr, uid, ids, data, context)
+        if context is None:
+            context = {}
+        vals = self.read(cr, uid, ids,
+                         ['account_ids'],
+                         context=context)[0]
+        data['form'].update(vals)
+        return data
 
     def _print_report(self, cr, uid, ids, data, context=None):
         context = context or {}
@@ -35,8 +53,9 @@ class partner_ledger_webkit_wizard_oisa(partner_ledger_webkit_wizard):
             # we update form with display account value
             data = self.pre_print_report(cr, uid, ids, data, context=context)
             return {'type': 'ir.actions.report.xml',
-                    'report_name': 'account.account_report_partner_ledger_oisa_xls',
+                    'report_name': 'account.account_report_partner_ledger_by_account',
                     'datas': data}
         else:
             return super(partner_ledger_webkit_wizard, self)._print_report(
                 cr, uid, ids, data, context=context)
+

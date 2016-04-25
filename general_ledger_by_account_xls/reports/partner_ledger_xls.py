@@ -24,10 +24,8 @@ import xlwt
 from datetime import datetime
 from openerp.addons.report_xls.report_xls import report_xls
 from openerp.addons.report_xls.utils import rowcol_to_cell
-from openerp.addons.account_financial_report_webkit.report.partners_ledger \
-    import PartnersLedgerWebkit
+from openerp.addons.general_ledger_by_account_xls.reports.partners_ledger import PartnersLedgerWebkit_by_account
 from openerp.tools.translate import _
-import pdb
 # import logging
 # _logger = logging.getLogger(__name__)
 
@@ -73,7 +71,6 @@ class partner_ledger_xls(report_xls):
                                   _p.company.partner_id.name,
                                   _p.company.currency_id.name])
         
-        report_name = ' Reporte Especial OISA'
         c_specs = [
             ('report_name', 1, 0, 'text', report_name),
         ]
@@ -215,7 +212,6 @@ class partner_ledger_xls(report_xls):
             num_format_str=report_xls.decimal_format)
 
         cnt = 0
-#        pdb.set_trace()
         for account in objects:
             if ((account.ledger_lines or account.init_balance) and (account.id in data['form']['account_ids'])) or ((account.ledger_lines or account.init_balance) and ( not data['form']['account_ids'])):
                 if not account.partners_order:
@@ -455,6 +451,6 @@ class partner_ledger_xls(report_xls):
                     ws, row_pos, row_data, account_cell_style)
                 row_pos += 2
 
-partner_ledger_xls('report.account.account_report_partner_ledger_oisa_xls',
+partner_ledger_xls('report.account.account_report_partner_ledger_by_account',
                    'account.account',
-                   parser=PartnersLedgerWebkit)
+                   parser=PartnersLedgerWebkit_by_account)

@@ -3,7 +3,7 @@
     <data>
 
         <record id="account_partner_ledger_view_webkit" model="ir.ui.view">
-            <field name="name">Partner Ledger Oisa</field>
+            <field name="name">Partner Ledger by Account</field>
             <field name="model">partners.ledger.webkit</field>
             <field name="inherit_id" ref="account.account_common_report_view"/>
             <field name="arch" type="xml">

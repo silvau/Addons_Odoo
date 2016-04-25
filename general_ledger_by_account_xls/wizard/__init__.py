@@ -21,4 +21,3 @@
 ##############################################################################
 
 from . import partners_ledger_wizard
-from . import partners_ledger_wizard_xls
