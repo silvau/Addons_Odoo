@@ -24,20 +24,7 @@ from openerp.tools.translate import _
 from openerp.osv import fields, osv
 
 class account_check_write(osv.osv_memory):
-    _name = 'account.check.write'
-    _description = 'Prin Check in Batch'
-
-    _columns = {
-        'check_number': fields.integer('Next Check Number', required=True, help="The number of the next check number to be printed."),
-    }
-
-    def _get_next_number(self, cr, uid, context=None):
-        dummy, sequence_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'account_check_writing', 'sequence_check_number')
-        return self.pool.get('ir.sequence').read(cr, uid, sequence_id, ['number_next'])['number_next']
-
-    _defaults = {
-        'check_number': _get_next_number,
-   }
+    _inherit = 'account.check.write'
 
     def print_check_write(self, cr, uid, ids, context=None):
         if context is None:
@@ -65,6 +52,7 @@ class account_check_write(osv.osv_memory):
 
         #print the checks
         check_layout_report = {
+            'oisa' : 'account.print.check.top_oisa',
             'top' : 'account.print.check.top',
             'middle' : 'account.print.check.middle',
             'bottom' : 'account.print.check.bottom',

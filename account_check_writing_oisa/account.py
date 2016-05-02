@@ -21,30 +21,17 @@
 
 from openerp.osv import osv,fields
 
-class account_journal(osv.osv):
-    _inherit = "account.journal"
-
-    _columns = {
-        'allow_check_writing': fields.boolean('Allow Check writing', help='Check this if the journal is to be used for writing checks.'),
-        'use_preprint_check': fields.boolean('Use Preprinted Check'),
-        }
-
-account_journal()
-
 class res_company(osv.osv):
     _inherit = "res.company"
     _columns = {
         'check_layout': fields.selection([
+            ('oisa', 'Check Oisa'),
             ('top', 'Check on Top'),
             ('middle', 'Check in middle'),
             ('bottom', 'Check on bottom'),
             ],"Check Layout",
-            help="Check on top is compatible with Quicken, QuickBooks and Microsoft Money. Check in middle is compatible with Peachtree, ACCPAC and DacEasy. Check on bottom is compatible with Peachtree, ACCPAC and DacEasy only"  ),
+            help="Check on top Oisa is addapet to laser checks letter size. Check on top is compatible with Quicken, QuickBooks and Microsoft Money. Check in middle is compatible with Peachtree, ACCPAC and DacEasy. Check on bottom is compatible with Peachtree, ACCPAC and DacEasy only"  ),
         }
         
-    _defaults = {
-        'check_layout' : lambda *a: 'top',
-    }
-    
 res_company()
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

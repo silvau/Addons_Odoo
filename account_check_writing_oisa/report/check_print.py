@@ -22,9 +22,9 @@ import time
 from openerp.report import report_sxw
 from openerp.tools import amount_to_text_en
 import pdb
-class report_print_check(report_sxw.rml_parse):
+class report_print_check_oisa(report_sxw.rml_parse):
     def __init__(self, cr, uid, name, context):
-        super(report_print_check, self).__init__(cr, uid, name, context)
+        super(report_print_check_oisa, self).__init__(cr, uid, name, context)
         self.number_lines = 0
         self.number_add = 0
         self.localcontext.update({
@@ -133,20 +133,7 @@ report_sxw.report_sxw(
     'report.account.print.check.top_oisa',
     'account.voucher',
     'addons/account_check_writing_oisa/report/check_print_top.rml',
-    parser=report_print_check,header=False
+    parser=report_print_check_oisa,header=False
 )
 
-report_sxw.report_sxw(
-    'report.account.print.check.middle_oisa',
-    'account.voucher',
-    'addons/account_check_writing_oisa/report/check_print_middle.rml',
-    parser=report_print_check,header=False
-)
-
-report_sxw.report_sxw(
-    'report.account.print.check.bottom_oisa',
-    'account.voucher',
-    'addons/account_check_writing_oisa/report/check_print_bottom.rml',
-    parser=report_print_check,header=False
-)
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

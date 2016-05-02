@@ -19,25 +19,18 @@
 #
 ##############################################################################
 {
-    'name': 'Check Writing',
+    'name': 'Check Writing Oisa',
     'version': '1.1',
-    'author': 'OpenERP SA, NovaPoint Group',
+    'author': 'silvau',
     'category': 'Generic Modules/Accounting',
     'description': """
-Module for the Check Writing and Check Printing.
-================================================
+Module for the Check Writing and Check Printing addapted to Oisa requirements
+=============================================================================
     """,
-    'website': 'http://www.openerp.com',
-    'depends' : ['account_voucher'],
+    'website': 'http://www.zeval.com.mx',
+    'depends' : ['account_check_writing'],
     'data': [
-        'wizard/account_check_batch_printing_view.xml',
-        'account_check_writing_report.xml',
-        'account_view.xml',
-        'account_voucher_view.xml',
-        'account_check_writing_data.xml',
     ],
-    'demo': ['account_demo.xml'],
-    'test': [],
     'installable': True,
     'active': False,
 }
