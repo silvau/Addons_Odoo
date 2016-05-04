@@ -24,6 +24,7 @@ from openerp.tools.translate import _
 from numero_letras import numero_a_letras
 from lxml import etree
 import decimal
+import pdb
 
 class account_voucher(osv.osv):
     _inherit = 'account.voucher'
@@ -44,8 +45,23 @@ class account_voucher(osv.osv):
         #TODO : generic amount_to_text is not ready yet, otherwise language (and country) and currency can be passed
         #amount_in_word = amount_to_text(amount, context=context)
         cantidad_entera=int(amount)
-        cantidad_decimal=str(int((round(decimal.Decimal(amount),2)-cantidad_entera)*100))
+        cantidad_decimal=int(100*round(amount%1,2))
+        if cantidad_decimal<10:
+           cantidad_decimal="0"+str(cantidad_decimal)
+        else:
+           cantidad_decimal=str(cantidad_decimal)
         cantidad_letras=numero_a_letras(cantidad_entera).upper()+' PESOS '+cantidad_decimal+'/100 M.N.'
+        cantidad_letras=cantidad_letras.replace('MILLON PESOS','MILLON DE PESOS',1)
+        cantidad_letras=cantidad_letras.replace('MILLONES PESOS','MILLONES DE PESOS',1)
+        cantidad_letras=cantidad_letras.replace('CIENTO MILLONES','CIEN MILLONES',1)
+        cantidad_letras=cantidad_letras.replace('CIENTO MIL ','CIEN MIL ',1)
+        cantidad_letras=cantidad_letras.replace('CIENTO PESOS','CIEN PESOS',1)
+        if cantidad_letras.startswith('UNO PESOS'):
+            cantidad_letras=cantidad_letras.replace('UNO PESOS','UN PESO',1)
+        else:
+            cantidad_letras=cantidad_letras.replace('UNO PESOS','UN PESOS',1)
+ 
+#        pdb.set_trace()
         return cantidad_letras
 
     def print_check(self, cr, uid, ids, context=None):

@@ -169,7 +169,7 @@
 
 
 
-          <blockTable colWidths="2.5cm,9.5cm,2.7cm,2.4cm,2.4cm" rowHeights="0.5cm" style="Table8">
+          <blockTable colWidths="2.5cm,9.7cm,2.7cm,2.4cm,2.4cm" rowHeights="0.5cm" style="Table8">
             <tr/>
             <tr/>
             <tr/>
@@ -247,10 +247,10 @@
                 <para style="P19"><font color="white"> </font></para>
               </td>
               <td>
-                <para style="P19">[[ formatLang(l['debit']) ]]</para>
+                <para style="P19">[[ formatLang(l['debit'],2) ]]</para>
               </td>
               <td>
-                <para style="P19">[[ formatLang(l['credit']) ]]</para>
+                <para style="P19">[[ formatLang(l['credit'],2) ]]</para>
               </td>
             </tr>
           </blockTable>
@@ -263,7 +263,7 @@
           <nextFrame/> 
             
           
-          <blockTable colWidths="12.7cm,2.4cm,0.4cm" rowHeights="0.5cm" style="Table8">
+          <blockTable colWidths="12.9cm,2.4cm,0.4cm" rowHeights="0.5cm" style="Table8">
 
             <tr/>
             <tr/>
@@ -271,10 +271,10 @@
               <td>
               </td>
               <td>
-                <para style="P19">[[ formatLang(get_sum_debits(voucher.move_ids)['debit']) ]]</para>
+                <para style="P19">[[ formatLang(get_sum_debits(voucher.move_ids)['debit'],2) ]]</para>
               </td>
               <td>
-                <para style="P19">[[ formatLang(get_sum_credits(voucher.move_ids)['credit']) ]]</para>
+                <para style="P19">[[ formatLang(get_sum_credits(voucher.move_ids)['credit'],2) ]]</para>
               </td>
             </tr>
           </blockTable>
