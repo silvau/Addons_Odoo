@@ -17,10 +17,11 @@
                     <group colspan="4" >
                         <separator string="Employees" colspan="4"/>
                         <newline/>
-                        <field name="employee_ids" nolabel="1"/>
+                        <field name="employee_ids" nolabel="1" attrs="{'invisible':[('all_employees','=',True)]}"/>
                     </group>
                     <footer>
-                        <button icon="gtk-execute" string="Update" name="update_period" type="object" class="oe_highlight"  />
+                        <button icon="gtk-execute" string="Update Period" name="update_period" type="object" class="oe_highlight"  />
+                        <button name="cancel" string="Cancel" special="cancel" class="oe_link"/>
                     </footer>
 
                </form>

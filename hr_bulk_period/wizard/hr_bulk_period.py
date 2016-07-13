@@ -28,19 +28,24 @@ class hr_payslip_bulk_period(osv.osv_memory):
         'period_id': fields.many2one('account.period', 'Period'),
         'all_employees': fields.boolean('All Employees'),
     }
+    _defaults = {
+
+        'all_employees': True,
+
+    }
     
     def update_period(self, cr, uid, ids, context=None):
         run_pool = self.pool.get('hr.payslip.run')
         payslip_pool = self.pool.get('hr.payslip')
         payslip_run=run_pool.browse(cr,uid,context.get('active_id',False))
         data = self.read(cr, uid, ids, context=context)[0]
-        for slip in payslip_run.slip_ids:
-            if not data['all_employees']:
-                if slip.employee_id.id in data['employee_ids']: 
-                    payslip_pool.write(cr,uid, slip.id, {'period_id': data['period_id'][0]})
-            else:
-                payslip_pool.write(cr,uid, slip.id, {'period_id': data['period_id'][0]})
-             
+        if not data['all_employees']:
+            slip_ids=payslip_pool.search(cr,uid,[('payslip_run_id','=',context.get('active_id',False)),('employee_id','in',data['employee_ids'])])
+        else:
+            slip_ids=payslip_pool.search(cr,uid,[('payslip_run_id','=',context.get('active_id',False))])
+            
+        for slip in slip_ids:
+            payslip_pool.write(cr,uid, slip, {'period_id': data['period_id'][0]})
         return {'type': 'ir.actions.act_window_close'}
 
 hr_payslip_bulk_period()
