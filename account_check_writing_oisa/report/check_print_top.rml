@@ -109,56 +109,31 @@
 
 
           <blockTable colWidths="10cm,7cm,3cm" rowHeights="0.5cm" style="Table4">
-                <tr>
-              <td> <para style="P9"><font > </font></para> </td>
-              <td> <para style="P9"><font color="white"> </font></para> </td>
-              <td> <para style="P9"><font color="white"> </font></para> </td>
-            </tr>
-            <tr>
-              <td> <para style="P9"><font > </font></para> </td>
-              <td> <para style="P9"><font color="white"> </font></para> </td>
-              <td> <para style="P9"><font color="white"> </font></para> </td>
-            </tr>
-             <tr>
-              <td> <para style="P9"><font > </font></para> </td>
-              <td> <para style="P9"><font color="white"> </font></para> </td>
-              <td> <para style="P9"><font color="white"> </font></para> </td>
-            </tr>
-            <tr>
+           <tr/>
+           <tr/>
+           <tr>
               <td/>
               <td> <para style="P9_date">[[ get_mydate(voucher.date) ]] </para>  </td>
               <td> <para style="P9"><font color="white"> </font></para> </td>
-            </tr>
- 
-              <tr>
-              <td> <para style="P9"><font > </font></para> </td>
-              <td> <para style="P9"><font color="white"> </font></para> </td>
-              <td> <para style="P9"><font color="white"> </font></para> </td>
-            </tr>
-         </blockTable>
+           </tr>
+           <tr/>
+        </blockTable>
 
 
-          <blockTable colWidths="3.5cm,12.2cm,1.0cm,1cm" rowHeights="0.5cm" style="Table4">
+          <blockTable colWidths="3.5cm,12.2cm,1.0cm,1cm" rowHeights="0.25cm" style="Table4">
+            <tr/>
+            <tr/>
             <tr>
               <td> <para style="P9"><font > </font></para> </td>
-              <td/>
+              <td><para style="B1">[[ voucher.benef.name ]] </para></td> 
               <td><para style="P12">[[formatLang (voucher.amount,2) ]]</para></td>
               <td/>
             </tr>
-            <tr>
-              <td/>
-              <td><para style="B1">[[ voucher.partner_id.name ]] </para></td> 
-              <td/>
-              <td/>
-            </tr>
-
- 
+            <tr/>
           </blockTable>
           <blockTable colWidths="0.5cm,12.4cm" rowHeights="0.5cm" style="Table5">
-            <tr>
-              <td> <para style="P9"><font > </font></para> </td>
-              <td/>
-            </tr>
+            <tr/>
+            <tr/>
             <tr>
               <td/>
               <td>
@@ -171,7 +146,7 @@
 
 
 
-          <blockTable colWidths="2.5cm,9.7cm,2.7cm,2.4cm,2.4cm" rowHeights="0.5cm" style="Table8">
+          <blockTable colWidths="2.5cm,9.7cm,2.7cm,2.6cm,2.4cm" rowHeights="0.5cm" style="Table8">
             <tr/>
             <tr/>
             <tr/>
@@ -208,38 +183,27 @@
 
 
 
-          <blockTable colWidths="2.5cm,9.7cm,2.7cm,2.4cm,2.4cm" rowHeights="0.5cm" style="Table8">
+          <blockTable colWidths="2.5cm,8.7cm,2.7cm,2.6cm,2.4cm" rowHeights="0.5cm" style="Table8">
             <tr/>
             <tr>
               <td>
-                <para style="P19">[[ '======================================']]</para>
-              </td>
-              <td>
-                <para style="P19"></para>
-              </td>
-              <td>
-                <para style="P19"><font color="white"> </font></para>
-              </td>
-              <td>
-                <para style="P19"></para>
-              </td>
-              <td>
-                <para style="P19"></para>
-              </td>
-            </tr>
+                <para style="P19">[[ '=====================================================']]</para>
+              </td> 
+              <td/> <td/> <td/> <td/>
+           </tr>
  
             <tr>
               <td>
-                <para style="P19">[[ repeatIn(voucher.line_dr_ids,'line_debit') or removeParent('tr')]] [[ line_debit['supplier_invoice_number'] or 'Sin Factura'  ]]</para>
+                <para style="P19">[[ repeatIn(voucher.line_dr_ids,'line_debit')]] [[ line_debit['supplier_invoice_number'] or 'Sin Numero'  ]]</para>
               </td>
               <td>
                 <para style="P19">[[ str(line_debit['invoice'].number)+' ('+(line_debit['invoice'].supplier_invoice_number)+')' or 'Sin Apunte']]</para>
               </td>
               <td>
-                <para style="P19"><font color="white"> </font></para>
+                <para style="P19">[[ formatLang(line_debit.amount,2) ]]</para>
+
               </td>
               <td>
-                <para style="P19"></para>
               </td>
               <td>
                 <para style="P19"></para>
@@ -261,8 +225,9 @@
           <nextFrame/> 
             
           
-          <blockTable colWidths="12.9cm,2.4cm,0.4cm" rowHeights="0.5cm" style="Table8">
+          <blockTable colWidths="12.9cm,2.6cm,0.4cm" rowHeights="0.5cm" style="Table8">
 
+            <tr/>
             <tr/>
             <tr/>
            <tr>
