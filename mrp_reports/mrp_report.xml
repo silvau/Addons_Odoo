@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        <report
+            id="report_mrp_reports_production_cosume"
+            string="Costo de la Orden"
+            model="mrp.production"
+            name="mrp_reports.production.consume"
+            rml="mrp_reports/report/order.rml"
+            auto="False"
+            />
+
+    </data>
+</openerp>
