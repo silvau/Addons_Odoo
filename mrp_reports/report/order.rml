@@ -280,7 +280,7 @@
       <para style="terp_default_Bold_9">
         <font color="white"> </font>
       </para>
-      <para style="terp_default_Bold_9"><b>Consumed Products [[ o.move_lines2 ==[] and removeParentNode('section')]]</b></para>
+      <para style="terp_default_Bold_9"><b>Productos Consumidos [[ o.move_lines2 ==[] and removeParentNode('section')]]</b></para>
       <section>
         <para style="terp_default_2">[[ repeatIn(o.move_lines2,'line2') ]]</para>
         <blockTable colWidths="251.0,66.0,106.0,104.0" style="Table10">
