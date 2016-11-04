@@ -11,6 +11,17 @@
             rml="mrp_reports/report/order.rml"
             auto="False"
             />
+        <report
+            id="report_mrp_reports_bom_cost"
+            string="Costos de LdM"
+            model="mrp.bom"
+            name="mrp_reports.bom.cost"
+            rml="mrp_reports/report/bom_cost.rml"
+            auto="False"
+            />
+
+
+
 
     </data>
 </openerp>
