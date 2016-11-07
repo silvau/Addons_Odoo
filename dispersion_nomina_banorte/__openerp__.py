@@ -10,8 +10,10 @@
    'depends': ['hr','cfdi_nomina'],
    'data': [
        'wizard/hr_payslip_dispersion_wizard_view.xml',
-       'res_company_view.xml',
+#       'res_company_view.xml',
        'hr_employee_view.xml',
+       'dispersion_emisoras_view.xml',
+       'dispersion_codigos_serv_view.xml',
 #       'reports.xml',
    ],
    'installable': True,

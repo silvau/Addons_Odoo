@@ -10,6 +10,8 @@
                     <group>
                         <field name="fecha_proceso" string="Fecha Proceso"/>
                         <field name="consecutivo" on_change="onchange_consecutivo(consecutivo)"/>
+                        <field name="emisora_id" required= 'True'/>
+                        <field name="codigo_serv_id" required= 'True'/>
                     </group>
                     <group>
                         <field name="payslip_run" string="Seleccionar Nominas" />

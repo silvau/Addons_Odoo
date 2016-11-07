@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-import pdb
+#import pdb
 import time
 import base64
 from openerp.osv import osv, fields
@@ -30,7 +30,9 @@ class hr_payslip_dispersion_banorte(osv.osv_memory):
     _description = 'HR Payslip Dispersion Banorte'
 
     _columns = {
-        'payslip_run': fields.many2many('hr.payslip.run', 'hr_banorte_rel'),
+        'payslip_run': fields.many2many('hr.payslip.run', 'hr_banorte_rel', domain="[('state','=','close')]"),
+        'emisora_id': fields.many2one('dispersion.emisoras', 'Emisora'),
+        'codigo_serv_id': fields.many2one('dispersion.codigos_serv', 'Codigo de Servicio'),
         'fecha_proceso': fields.date(),
         'txt_binary': fields.binary("File TXT"),
         'txt_filename': fields.char("Filename"),
@@ -60,6 +62,7 @@ class hr_payslip_dispersion_banorte(osv.osv_memory):
         content = ""
         num_regs = 0
         amount_regs = 0.0
+        #pdb.set_trace()
         for nomina  in this.payslip_run:
             payslip_ids=payslip_obj.search(cr,uid,[('payslip_run_id','=',nomina.id)])
             payslip_regs = payslip_obj.browse(cr,uid,payslip_ids,context=None)                
@@ -88,18 +91,23 @@ class hr_payslip_dispersion_banorte(osv.osv_memory):
                         parte_entera="0"*(13-len(parte_entera))+parte_entera
                     
                     linea=linea+parte_entera+parte_decimal
-                    num_bank_rec=payslip_line.employee_id.bank_account_id.bank_bic
+
+#                    pdb.set_trace() 
+                    num_bank_rec= ""
+                    if payslip_line.employee_id.bank_account_id.bank :
+                        num_bank_rec=payslip_line.employee_id.bank_account_id.bank.code_sat or ""
+ 
                    
                     if (not num_bank_rec) or len((str)(num_bank_rec))!= 3 :
-                        raise osv.except_osv(_("Error!"), _("El empleado "+payslip_line.employee_id.name + u" no tiene asignado un número de banco receptor válido"
+                        raise osv.except_osv(_("Error!"), _("El empleado "+ (str)(payslip_line.employee_id.cod_emp) + u" no tiene asignado un número de banco receptor válido"
                                              )) 
                     num_bank_rec_str=(str)(num_bank_rec)
                     linea=linea+num_bank_rec_str
                     linea=linea+(str)(payslip_line.employee_id.tipo_cuenta)
-                    
+#                    pdb.set_trace() 
                     num_cta=(str)(payslip_line.employee_id.bank_account_id.acc_number)
                     if (len(num_cta) > 18) or (num_cta == "None") or (len(num_cta) < 9):
-                        raise osv.except_osv(_("Error!"), _("El empleado "+payslip_line.employee_id.name + u" no tiene asignado un número de cuenta válido"
+                        raise osv.except_osv(_("Error!"), _("El empleado "+payslip_line.employee_id.name + " ("+payslip_line.employee_id.id+") "+u" no tiene asignado un número de cuenta válido"
                           ))
                     if len(num_cta) < 18 :
                         num_cta="0"*(18-len(num_cta))+num_cta
@@ -121,10 +129,10 @@ class hr_payslip_dispersion_banorte(osv.osv_memory):
             parte_entera=parte_entera[:13]
         if len(parte_entera) < 13:
             parte_entera="0"*(13-len(parte_entera))+parte_entera
- 
-        cabecera = "HNE"+str(user_rec.company_id.emisora)+proper_date_string+str(proper_consecutivo)+num_regs_str+parte_entera+parte_decimal+"0"*6+"0"*15+"0"*6+"0"*15+"0"*6+"0"+" "*77
+        #pdb.set_trace()
+        cabecera = "HNE"+str(this.emisora_id.name)+proper_date_string+str(proper_consecutivo)+num_regs_str+parte_entera+parte_decimal+"0"*6+"0"*15+"0"*6+"0"*15+"0"*6+"0"+" "*77
         content=cabecera+content
-        fname="NI"+str(user_rec.company_id.cod_serv)+proper_consecutivo+".PAG"
+        fname="NI"+str(this.codigo_serv_id.name)+proper_consecutivo+".PAG"
         self.write(cr, uid, this.id, {
             'txt_filename': fname,
             'txt_binary': base64.encodestring(content)

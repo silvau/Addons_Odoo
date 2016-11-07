@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+    	
+        <record model='ir.ui.view' id='dispersion_codigos_serv_tree'>
+        	<field name='name'>dispersion.codigos_serv.tree</field>
+        	<field name='model'>dispersion.codigos_serv</field>
+        	<field name='arch' type='xml'>
+        		<tree string='Codigos de Servicio'>
+        			<field name='name'/>
+        		</tree>
+        	</field>
+        </record>
+
+        <record model='ir.ui.view' id='dispersion_codigos_serv_form'>
+        	<field name='name'>dispersion_codigos_serv.form</field>
+        	<field name='model'>dispersion.codigos_serv</field>
+        	<field name='arch' type='xml'>
+        		<form string='Codigo de Servicio' version='7.0'>
+        			<header>
+        			</header>
+        			<sheet>
+        				<h1>
+        					<label string='Codigo de Servicio'/>
+        				</h1>
+        				<group>
+        					<field name='name'/>
+        				</group>
+        			</sheet>
+        		</form>
+        	</field>
+        </record>
+
+        <record id='dispersion_codigos_serv_action' model='ir.actions.act_window'>
+	        <field name='name'>Codigos de Servicio para Dispersion</field>
+	        <field name='res_model'>dispersion.codigos_serv</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+        </record>
+
+		<menuitem id="dispersion_codigos_serv_menu" name="Codigos de Serv Dispersion" sequence="27" parent="hr.menu_hr_configuration" action="dispersion_codigos_serv_action"/>
+
+
+    </data>
+</openerp>

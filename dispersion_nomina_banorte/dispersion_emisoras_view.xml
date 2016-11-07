@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+    	
+        <record model='ir.ui.view' id='dispersion_emisoras_tree'>
+        	<field name='name'>dispersion_emisoras.tree</field>
+        	<field name='model'>dispersion.emisoras</field>
+        	<field name='arch' type='xml'>
+        		<tree string='Emisoras'>
+        			<field name='name'/>
+        		</tree>
+        	</field>
+        </record>
+
+        <record model='ir.ui.view' id='dispersion_emisoras_form'>
+        	<field name='name'>dispersion_emisoras.form</field>
+        	<field name='model'>dispersion.emisoras</field>
+        	<field name='arch' type='xml'>
+        		<form string='Emisora' version='7.0'>
+        			<header>
+        			</header>
+        			<sheet>
+        				<h1>
+        					<label string='Emisora'/>
+        				</h1>
+        				<group>
+        					<field name='name'/>
+        				</group>
+        			</sheet>
+        		</form>
+        	</field>
+        </record>
+
+        <record id='dispersion_emisoras_action' model='ir.actions.act_window'>
+	        <field name='name'>Emisoras para Dispersion</field>
+	        <field name='res_model'>dispersion.emisoras</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+        </record>
+
+		<menuitem id="dispersion_emosiras_menu" name="Emisoras Dispersion" sequence="26" parent="hr.menu_hr_configuration" action="dispersion_emisoras_action"/>
+
+
+    </data>
+</openerp>
