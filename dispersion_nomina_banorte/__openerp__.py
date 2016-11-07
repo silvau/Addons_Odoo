@@ -8,6 +8,10 @@
    'author': 'silvau',
    'website': 'http://www.zenpar.com.mx',
    'depends': ['hr','cfdi_nomina'],
+   'init_xml': [
+        'security/ir.model.access.csv',
+    ],
+
    'data': [
        'wizard/hr_payslip_dispersion_wizard_view.xml',
 #       'res_company_view.xml',

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dispersion_emisoras,access_dispersion_emisoras,model_dispersion_emisoras,base.group_user,1,0,0,0
+manage_dispersion_emisoras,manage_dispersion_emisoras,model_dispersion_emisoras,base.group_hr_manager,1,1,1,1
+access_dispersion_codigos_serv,access_dispersion_codigos_serv,model_dispersion_codigos_serv,base.group_user,1,0,0,0
+manage_dispersion_codigos_serv,manage_dispersion_codigos_serv,model_dispersion_codigos_serv,base.group_hr_manager,1,1,1,1
