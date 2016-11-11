@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="module_form" model="ir.ui.view">
+          <field name="name">module.reload.form</field>
+          <field name="model">ir.module.module</field>
+          <field name="type">form</field>
+          <field name="inherit_id" ref="base.module_form" />
+          <field name="arch" type="xml">
+            <button name="button_immediate_upgrade" position="after">
+              <button 
+              	name="button_reload" 
+              	states="installed" 
+              	string="Reload" 
+              	icon="gtk-refresh" 
+              	type="object"/>
+            </button>
+          </field>
+        </record>
+	</data>
+</openerp>
