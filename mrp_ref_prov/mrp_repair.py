@@ -6,7 +6,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from openerp.tools.translate import _
 import openerp.addons.decimal_precision as dp
-import pdb
+#import pdb
 
 
 class mrp_repair(osv.osv):
@@ -19,7 +19,7 @@ class mrp_repair(osv.osv):
    
     
     def action_confirm(self, cr, uid, ids, *args):
-        pdb.set_trace()
+#        pdb.set_trace()
         res = super(mrp_repair, self).action_confirm(cr, uid, ids)
         po_obj = self.pool.get("purchase.order")
         for o in self.browse(cr, uid, ids):
