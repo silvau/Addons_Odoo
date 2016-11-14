@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    <record id="sale_info_caja_form" model="ir.ui.view">
+        <field name="name">sale_info_caja.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position='inside'>
+              <page  string="Datos Cotizacion" attrs="{'invisible':[('caja_id','=',False)], 'readonly': True}"  >
+                 <group>
+                     <field name="caja_id" />
+                     <field name="ean13_cotizacion_caja" attrs="{'readonly': True}"/>
+                 </group>
+                 <group>
+                      <field name="material_cotizacion_caja_id" attrs="{'readonly': True}"/>
+                 </group>
+                 <group>
+                     <group>
+                      <field name="wc_cotizacion_caja" attrs="{'readonly': True}"/>
+                      <field name="wi_cotizacion_caja" attrs="{'readonly': True}"/>
+                      <field name="uc_cotizacion_caja" attrs="{'readonly': True}"/>
+                      <field name="ui_cotizacion_caja" attrs="{'readonly': True}"/>
+                     </group>
+                     <group>
+                      <field name="chk_flauta_cotizacion_caja" attrs="{'readonly': True}"/>
+                      <field name="chk_laminado_cotizacion_caja" attrs="{'readonly': True}"/>
+                      <field name="chk_guias_cotizacion_caja" attrs="{'readonly': True}"/>
+                      <field name="tipo_tabla_cotizacion_caja" attrs="{'readonly': True}"/>
+                     </group>
+                 </group>
+                 <group>
+                       <field name="medidas_cotizacion_caja_id" attrs="{'readonly': True}">
+                           <tree string="Medidas de la Caja" readonly='1'>
+                              <field name="name" attrs="{'readonly': True}" />
+                              <field name="valor" attrs="{'readonly': True}"/>
+                            </tree>
+
+                      </field>
+
+                 </group>
+                 <group>
+                     <field name="procesos_cotizacion_caja_id" attrs="{'readonly': True}"/> 
+                 </group>
+              </page>
+           </xpath>
+        </field>
+
+    </record>
+
+
+    </data>
+</openerp>    
+
+
