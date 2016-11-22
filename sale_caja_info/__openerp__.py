@@ -7,13 +7,14 @@
     'author' : 'silvau',
     'website' : 'http://www.zeval.com.mx',
     'category' : '',
-    'depends' : ['sale','oisa'],
+    'depends' : ['sale','oisa','oisa_product_calidad'],
     'description': """
     Agrega informacion de la caja cotizada en la vista de forma
     """,
     'data': [
         'views/sale_order_view.xml',
         'views/product_view.xml',
+        'views/partner_view.xml',
     ],
     'demo': [],
     'test': [],

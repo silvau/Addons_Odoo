@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="sale_caja_partner_form">
+            <field name="name">sale_caja.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <notebook position="inside">
+                         <page string="Revisiones">
+                            <group>
+                                <field name="revisar_version_dibujo"/>
+                                <field name="revisar_fecha_autorizacion_dibujo"/>
+                                <field name="revisar_version_especificacion"/>
+                                <field name="revisar_fecha_especificacion"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </data>
+            </field>
+        </record>
+        
+    </data>
+</openerp>
