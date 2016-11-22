@@ -21,10 +21,35 @@ class sale_order(osv.osv):
                 res[i] = False
         return res
 
+    def _get_bom_id(self, cr, uid, ids, field_name, arg, context):
+        bom_obj=self.pool.get('mrp.bom')
+        res={}
+        for i in ids:
+             product_id= self.browse(cr,uid,i,context=context).caja_id.product_id.id
+             res[i]=bom_obj.search(cr,uid,[('product_id','=',product_id)],limit=1)
+        return res
+
+    def _get_medidas_filtradas(self, cr, uid, ids, field_name, arg, context):
+        medidas_desc_obj=self.pool.get('oisa.cot.caja.desc')
+        medidas_obj=self.pool.get('oisa.cotizacion.medidas')
+        res={}
+        medidas_abc=medidas_desc_obj.search(cr,uid,[('var','in',['a','b','c'])])
+        for i in ids:
+            medida_ids= self.browse(cr,uid,i,context=context).medidas_cotizacion_caja_id
+            lista_ids= []
+            for medida in medida_ids:
+                lista_ids.append(medida.id)
+            res[i]=medidas_obj.search(cr,uid,[('id','in',lista_ids),('name','in',medidas_abc)])
+        return res
+
+
     _columns = {
         'caja_id': fields.function(_get_caja_id, type='many2one', obj='sale.order.line', method='True',  string='Caja'),
+        'bom_id': fields.function(_get_bom_id, type='many2one', obj='mrp.bom', method='True',  string='Lista Pantones'),
+        'pantones_caja_id': fields.related('bom_id','bom_lines',type='one2many', relation='mrp.bom',string='Pantones'),
         'cotizacion_caja_id': fields.related('caja_id','product_id','cot_id',type='many2one', relation='oisa.cotizacion',string='Cotizacion de la Caja'),
         'medidas_cotizacion_caja_id': fields.related('caja_id','product_id','cot_id','medidas',type='one2many', relation='oisa.cotizacion.medidas',string='Medidas de la Caja'),
+        'medidas_filtradas': fields.function(_get_medidas_filtradas,type='one2many', obj='oisa.cotizacion.medidas',string='Medidas (ABC)'),
         'wc_cotizacion_caja': fields.related('caja_id','product_id','cot_id','wc',type='float', relation='oisa.cotizacion',string='WC'),
         'wi_cotizacion_caja': fields.related('caja_id','product_id','cot_id','wi',type='float', relation='oisa.cotizacion',string='WI'),
         'uc_cotizacion_caja': fields.related('caja_id','product_id','cot_id','uc',type='integer', relation='oisa.cotizacion',string='UC'),
@@ -36,4 +61,6 @@ class sale_order(osv.osv):
         'chk_guias_cotizacion_caja': fields.related('caja_id','product_id','cot_id','chk_guias',type='boolean', relation='oisa.cotizacion',string='Guias'),
         'tipo_tabla_cotizacion_caja': fields.related('caja_id','product_id','cot_id','tipo_tabla',type='selection', relation='oisa.cotizacion',string='Tabla'),
         'ean13_cotizacion_caja': fields.related('caja_id','product_id','ean13',type='char', relation='product.product',string='Código EAN13'),
+        'num_corrugado_caja': fields.related('caja_id','product_id','num_corrugado',type='integer', relation='product.product',string='Número de Corrugado'),
+        'piezas_corrugado_caja': fields.related('caja_id','product_id','piezas_corrugado',type='integer', relation='product.product',string='Piezas / Corrugado'),
     }

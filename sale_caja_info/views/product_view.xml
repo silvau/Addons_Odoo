@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    <record id="sale_info_product_form" model="ir.ui.view">
+        <field name="name">sale_info_product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="oisa.product_view_form_oisa" />
+        <field name="arch" type="xml">
+         
+           <field  name="pl" position="after">
+           <field  name="num_corrugado" />
+           <field  name="piezas_corrugado" />
+          
+           </field>
+        </field>
+
+    </record>
+
+
+    </data>
+</openerp>    
+
+

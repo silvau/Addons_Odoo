@@ -13,6 +13,7 @@
     """,
     'data': [
         'views/sale_order_view.xml',
+        'views/product_view.xml',
     ],
     'demo': [],
     'test': [],

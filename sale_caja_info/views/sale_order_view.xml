@@ -27,11 +27,14 @@
                       <field name="chk_laminado_cotizacion_caja" attrs="{'readonly': True}"/>
                       <field name="chk_guias_cotizacion_caja" attrs="{'readonly': True}"/>
                       <field name="tipo_tabla_cotizacion_caja" attrs="{'readonly': True}"/>
+                      <field name="num_corrugado_caja" attrs="{'readonly': True}"/>
+                      <field name="piezas_corrugado_caja" attrs="{'readonly': True}"/>
                      </group>
                  </group>
+
                  <group>
-                       <field name="medidas_cotizacion_caja_id" attrs="{'readonly': True}">
-                           <tree string="Medidas de la Caja" readonly='1'>
+                       <field name="medidas_filtradas" attrs="{'readonly': True}">
+                           <tree string="Medidas ABC" readonly='1'>
                               <field name="name" attrs="{'readonly': True}" />
                               <field name="valor" attrs="{'readonly': True}"/>
                             </tree>
@@ -39,6 +42,16 @@
                       </field>
 
                  </group>
+
+
+                 <group>
+                     <field name="pantones_caja_id" attrs="{'readonly': True}">
+                            <tree string="Pantones" readonly='1'>
+                              <field name="product_id"  string="Componente" attrs="{'readonly': True}" />
+                            </tree>
+                    </field>
+                 </group>
+
                  <group>
                      <field name="procesos_cotizacion_caja_id" attrs="{'readonly': True}"/> 
                  </group>
