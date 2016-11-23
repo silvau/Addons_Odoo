@@ -67,6 +67,10 @@
                  <group>
                      <field name="procesos_cotizacion_caja_id" attrs="{'readonly': True}"/> 
                  </group>
+                 <group>
+                     <field name="routing_caja_id" attrs="{'readonly': True}"/> 
+                 </group>
+
               </page>
            </xpath>
         </field>

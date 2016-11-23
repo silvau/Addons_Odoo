@@ -31,10 +31,10 @@
            <field  name="revisar_version_especificacion" attrs="{'invisible':True}"/>
            <field  name="revisar_fecha_especificacion" attrs="{'invisible':True}" />
 
-           <field  name="version" string="Versión del Dibujo" attrs="{'required': [('revisar_version_dibujo','=',True)], 'invisible': [('revisar_version_dibujo','!=',True)]}" />
-           <field  name="fecha_autorizacion_dibujo" attrs="{'required': [('revisar_fecha_autorizacion_dibujo','=',True)], 'invisible': [('revisar_fecha_autorizacion_dibujo','!=',True)]}" />
-           <field  name="version_especificacion" attrs="{'required': [('revisar_version_especificacion','=',True)], 'invisible': [('revisar_version_especificacion','!=',True)]}" />
-           <field  name="fecha_especificacion" attrs="{'required': [('revisar_fecha_especificacion','=',True)], 'invisible': [('revisar_fecha_especificacion','!=',True)]}" />
+           <field  name="version" string="Versión del Dibujo" attrs="{'required': [('revisar_version_dibujo','=',True),('es_caja','=',True)], 'invisible': [('revisar_version_dibujo','!=',True)]}" />
+           <field  name="fecha_autorizacion_dibujo" attrs="{'required': [('revisar_fecha_autorizacion_dibujo','=',True),('es_caja','=',True)], 'invisible': [('revisar_fecha_autorizacion_dibujo','!=',True)]}" />
+           <field  name="version_especificacion" attrs="{'required': [('revisar_version_especificacion','=',True),('es_caja','=',True)], 'invisible': [('revisar_version_especificacion','!=',True)]}" />
+           <field  name="fecha_especificacion" attrs="{'required': [('revisar_fecha_especificacion','=',True),('es_caja','=',True)], 'invisible': [('revisar_fecha_especificacion','!=',True)]}" />
 
           
            </field>
