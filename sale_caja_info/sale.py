@@ -63,4 +63,13 @@ class sale_order(osv.osv):
         'ean13_cotizacion_caja': fields.related('caja_id','product_id','ean13',type='char', relation='product.product',string='Código EAN13'),
         'num_corrugado_caja': fields.related('caja_id','product_id','num_corrugado',type='integer', relation='product.product',string='Número de Corrugado'),
         'piezas_corrugado_caja': fields.related('caja_id','product_id','piezas_corrugado',type='integer', relation='product.product',string='Piezas / Corrugado'),
+        'version_dibujo': fields.related('caja_id','product_id','version',type='char', relation='product.product',string='Versión del Dibujo'),
+        'fecha_autorizacion_dibujo': fields.related('caja_id','product_id','fecha_autorizacion_dibujo',type='date', relation='product.product',string='Fecha de Autorización del Dibujo'),
+        'version_especificacion': fields.related('caja_id','product_id','version_especificacion',type='char', relation='product.product',string='Versión de la Especificación'),
+        'fecha_especificacion': fields.related('caja_id','product_id','fecha_especificacion',type='date', relation='product.product',string='Fecha de la Especificación'),
+        'revisar_version_dibujo': fields.related('caja_id','product_id','made_for','revisar_version_dibujo',type='boolean', relation='res.partner', string='Revisar Version del Dibujo'),
+        'revisar_fecha_autorizacion_dibujo': fields.related('caja_id','product_id','made_for','revisar_fecha_autorizacion_dibujo',type='boolean', relation='res.partner', string='Revisar Fecha de Autorizacion del Dibujo'),
+        'revisar_version_especificacion': fields.related('caja_id','product_id','made_for','revisar_version_especificacion',type='boolean', relation='res.partner', string='Revisar Version de la Especificacion'),
+        'revisar_fecha_especificacion': fields.related('caja_id','product_id','made_for','revisar_fecha_especificacion',type='boolean', relation='res.partner', string ='Revisar Fecha de Especificacion'),
+
     }

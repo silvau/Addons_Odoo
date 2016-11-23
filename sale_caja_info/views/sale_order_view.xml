@@ -16,6 +16,18 @@
                       <field name="material_cotizacion_caja_id" attrs="{'readonly': True}"/>
                  </group>
                  <group>
+                   <field  name="revisar_version_dibujo" attrs="{'invisible':True}"/>
+                   <field  name="revisar_fecha_autorizacion_dibujo" attrs="{'invisible':True}"/>
+                   <field  name="revisar_version_especificacion" attrs="{'invisible':True}"/>
+                   <field  name="revisar_fecha_especificacion" attrs="{'invisible':True}" />
+
+                   <field  name="version_dibujo" attrs="{'readonly': True, 'invisible': [('revisar_version_dibujo','!=',True)]}" />
+                   <field  name="fecha_autorizacion_dibujo" attrs="{'readonly':True, 'invisible': [('revisar_fecha_autorizacion_dibujo','!=',True)]}" />
+                   <field  name="version_especificacion" attrs="{'readonly': True, 'invisible': [('revisar_version_especificacion','!=',True)]}" />
+                   <field  name="fecha_especificacion" attrs="{'readonly': True, 'invisible': [('revisar_fecha_especificacion','!=',True)]}" />
+                 </group>
+
+                 <group>
                      <group>
                       <field name="wc_cotizacion_caja" attrs="{'readonly': True}"/>
                       <field name="wi_cotizacion_caja" attrs="{'readonly': True}"/>
