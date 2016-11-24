@@ -25,8 +25,11 @@ class sale_order(osv.osv):
         bom_obj=self.pool.get('mrp.bom')
         res={}
         for i in ids:
-             product_id= self.browse(cr,uid,i,context=context).caja_id.product_id.id
-             res[i]=bom_obj.search(cr,uid,[('product_id','=',product_id)],limit=1)
+             product_id= self.browse(cr,uid,i,context=context).caja_id.product_id
+             if product_id :
+                 res[i]=bom_obj.search(cr,uid,[('product_id','=',product_id.id)],limit=1)
+             else:
+                 res[i]= None
         return res
 
     def _get_medidas_filtradas(self, cr, uid, ids, field_name, arg, context):
