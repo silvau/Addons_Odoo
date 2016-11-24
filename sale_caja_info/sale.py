@@ -11,12 +11,16 @@ class sale_order(osv.osv):
     def _get_caja_id(self, cr, uid, ids, field_name, arg, context):
         so_line_obj=self.pool.get('sale.order.line')
         product_obj=self.pool.get('product.product')
-        product_cajas_ids = product_obj.search(cr,uid,[('es_caja','=',True)])
         res={}
         for i in ids:
-            cajas=so_line_obj.search(cr,uid,[('product_id','in',product_cajas_ids), ('order_id','=',i)],count=True)
+            this=self.browse(cr,uid,i)
+            order_line_ids = [br.id for br in this.order_line]
+            order_line_read_products = so_line_obj.read(cr, uid, order_line_ids,['product_id'])
+            order_line_product_ids = [br['product_id'][0] for br in order_line_read_products]
+            cajas = product_obj.search(cr,uid,[('es_caja','=',True),('id','in',order_line_product_ids)],count=True)
             if cajas > 0 :
-                res[i] = so_line_obj.search(cr,uid,[('product_id','in',product_cajas_ids), ('order_id','=',i)],limit=1)
+                product_cajas_ids = product_obj.search(cr,uid,[('es_caja','=',True),('id','in',order_line_product_ids)])
+                res[i] = so_line_obj.search(cr,uid,[('product_id','in',product_cajas_ids)],limit=1)
             else:
                 res[i] = False
         return res
@@ -29,7 +33,7 @@ class sale_order(osv.osv):
              if product_id :
                  res[i]=bom_obj.search(cr,uid,[('product_id','=',product_id.id)],limit=1)
              else:
-                 res[i]= None
+                 res[i]= False
         return res
 
     def _get_medidas_filtradas(self, cr, uid, ids, field_name, arg, context):
