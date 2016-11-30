@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+    	
+        <record model='ir.ui.view' id='ubicacion_lotes_tree'>
+        	<field name='name'>ubicacion_lotes.tree</field>
+        	<field name='model'>ubicacion.lotes</field>
+        	<field name='arch' type='xml'>
+        		<tree string='Ubicaciones'>
+        			<field name='name'/>
+        		</tree>
+        	</field>
+        </record>
+
+        <record model='ir.ui.view' id='ubicacion_lotes_form'>
+        	<field name='name'>ubicacion_lotes.form</field>
+        	<field name='model'>ubicacion.lotes</field>
+        	<field name='arch' type='xml'>
+        		<form string='Ubicaciones' version="7.0">
+        			<header>
+        			</header>
+        			<sheet>
+        				<h1>
+        					<label string='Ubicación'/>
+        				</h1>
+        				<group>
+        					<field name='name'/>
+        				</group>
+        			</sheet>
+        		</form>
+        	</field>
+        </record>
+
+        <record model='ir.ui.view' id='ubicacion_lotes_view_production_lot_form'>
+        	<field name='name'>ubicacion_lotes.view_production_lot_form</field>
+        	<field name='model'>stock.production.lot</field>
+        	<field name='inherit_id' ref="stock.view_production_lot_form" />
+        	<field name='arch' type='xml'>
+
+                   <field name="ref" position="after">
+                    
+	              <field name='ubicacion_id' options="{'no_create': True}" widget='selection'/> 
+                    
+        	   </field>
+        	</field>
+        </record>
+
+        <record model='ir.ui.view' id='ubicacion_lotes_view_production_lot_tree'>
+        	<field name='name'>ubicacion_lotes.view_production_lot_tree</field>
+        	<field name='model'>stock.production.lot</field>
+        	<field name='inherit_id' ref="stock.view_production_lot_tree" />
+        	<field name='arch' type='xml'>
+
+                   <field name="ref" position="after">
+                    
+	              <field name='ubicacion_id'/> 
+                    
+        	   </field>
+        	</field>
+        </record>
+
+
+
+
+
+        <record id='ubicacion_lotes_action' model='ir.actions.act_window'>
+	        <field name='name'>Ubicaciones de Lotes</field>
+	        <field name='res_model'>ubicacion.lotes</field>
+			<field name='view_type'>form</field>
+			<field name='view_mode'>tree,form</field>
+		</record>
+
+		<menuitem id="ubicacion_lotes_menu" name="Ubicaciones Lotes" sequence="26" parent="stock.menu_stock_configuration" action="ubicacion_lotes_action"/>
+
+
+    </data>
+</openerp>
