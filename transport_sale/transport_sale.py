@@ -270,6 +270,8 @@ class fleet_vehicle(osv.osv):
                                               fields_id='fleet_vehicle_id', string='Vehicle Sales'),
             'internal_number': fields.integer(string='Internal Number'),
             'is_trailer':fields.boolean(string='Is Trailer',required=False),
+             'emp_driver_id':fields.many2one(obj='hr.employee', string='Driver', required=True,
+                                               ondelete='restrict'),
                     }
 fleet_vehicle()
 

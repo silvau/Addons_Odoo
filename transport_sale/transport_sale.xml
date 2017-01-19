@@ -149,6 +149,11 @@
 							</tree>
 						</field>
 				</xpath>
+           			<xpath expr="//field[@name='driver_id']"
+					position="after">
+					<field name="emp_driver_id" domain="[('is_driver','=','1')]"/>
+	          		</xpath>		
+
 			</field>
 		</record>
 
