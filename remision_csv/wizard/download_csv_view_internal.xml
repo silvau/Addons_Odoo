@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="view_download_csv_wizard" model="ir.ui.view">
-            <field name="name">download_csv.form</field>
-            <field name="model">download.csv</field>
+        <record id="view_download_csv_wizard_internal" model="ir.ui.view">
+            <field name="name">download_csv_internal.form</field>
+            <field name="model">download.csv.internal</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Download File" version="7.0">
@@ -21,15 +21,13 @@
 
         <act_window 
             name="Download CSV"
-            res_model="download.csv"
-            src_model="stock.picking.in"
+            res_model="download.csv.internal"
+            src_model="stock.picking"
             view_mode="form"
             target="new"
             multi="True"
             key2="client_action_multi"
-            id="action_download_csv" />
-
-
+            id="action_download_csv_internal" />
 
     </data>
 </openerp>

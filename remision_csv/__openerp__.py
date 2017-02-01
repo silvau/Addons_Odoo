@@ -13,6 +13,7 @@
     """,
     'data': [
         'wizard/download_csv_view.xml',
+        'wizard/download_csv_view_internal.xml',
         'views/stock_view.xml',
     ],
     'demo': [],
