@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+ 
+         <record id="action_metodos_pago" model="ir.actions.act_window">
+            <field name="name">Métodos de pago</field>
+            <field name="res_model">cfd_mx.formapago</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">list,form</field>
+            <field name="target"></field>
+        </record>
+
+        <record id="metodo_pago_view_tree" model="ir.ui.view">
+            <field name="name">metodo.pago.view.tree</field>
+            <field name="model">cfd_mx.formapago</field>
+            <field name="arch" type="xml">
+                <tree string="Métodos de pago">
+                    <field name="clave"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <menuitem action="action_metodos_pago" id="menu_metodos_pago" sequence="" 
+            parent="account.menu_finance_configuration" />
+
+        <record id="conf_addenda_view_form" model="ir.ui.view">
+            <field name="name">conf.addenda.form.view</field>
+            <field name="model">cfd_mx.conf_addenda</field>
+            <field name="arch" type="xml">
+                <form string="Configuración Addenda" version="7.0">
+                    <group>
+                        <group>
+                            <field name="model_selection" />
+                            <field name="model"/>
+                            <field name="partner_ids"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="conf_addenda_view_tree" model="ir.ui.view">
+            <field name="name">conf.addenda.tree.view</field>
+            <field name="model">cfd_mx.conf_addenda</field>
+            <field name="arch" type="xml">
+                <tree string="Configuración">
+                    <field name="model"/>
+                    <field name="model_selection" />
+                    <field name="partner_ids"/>    
+                </tree>
+            </field>
+        </record>
+    
+        <record id="action_conf_addenda" model="ir.actions.act_window">
+            <field name="name">Addendas</field>
+            <field name="res_model">cfd_mx.conf_addenda</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">list,form</field>
+            <field name="target"></field>
+        </record>
+    
+        <menuitem action="action_conf_addenda" id="menu_conf_addenda" sequence="" 
+            parent="account.menu_finance_receivables" groups="group_cfd_mx_user" />
+
+        
+        <record model="ir.ui.view" id="invoice_cfdi_form">
+            <field name="name">invoice_cfdi_form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Info. SAT" >
+                        <group>
+                            <field name="uuid" readonly="1"/>
+                            <field name="test" readonly="1"/>
+                            <field name="sello_sat" readonly="1"/>
+                            <field name="certificado_sat" readonly="1"/>
+                            <field name="fecha_timbrado" readonly="1"/>
+                            <field name="cadena_sat" readonly="1"/>
+                            <field name="cfd_mx_pac" readonly="1"/>                            
+                        </group>
+                        <group attrs="{'invisible': [('cfd_mx_pac','!=','finkok')]}">
+                            <group colspan="4">
+                                <h3 style="clear: both; display: block; color: #438594; font-size: 1.17em;">Códigos de respuesta (Tipificación de Errores)</h3>
+                            </group>
+                            <group colspan="4" >
+                                <div style="padding-left: 1em;">
+                                    <dl>
+                                        <dt><h3 style="clear: both; display: block; color: #438594; font-size: 1.17em;">Validación de la cancelación del CFD:</h3></dt>
+                                        <dd style="padding-left: 1em;"><b>201</b> - UUID Cancelado exitosamente.</dd>
+                                        <dd style="padding-left: 1em;"><b>202</b> - UUID Previamente cancelado.</dd>
+                                        <dd style="padding-left: 1em;"><b>203</b> - UUID No corresponde el RFC del Emisor y de quien solicita la cancelación.</dd>
+                                        <dd style="padding-left: 1em;"><b>205</b> - UUID No existe.</dd>
+                                    </dl>
+                                </div>
+                            </group>
+                            <group colspan="4" >
+                                <div style="padding-left: 1em;">
+                                    <dl>
+                                        <dt><h3 style="clear: both; display: block; color: #438594; font-size: 1.17em;">Validación de timbrado y cancelación del CFD:</h3></dt>
+                                        <dd style="padding-left: 1em;"><b>300</b> - Usuario y contraseña inválidos.</dd>
+                                        <dd style="padding-left: 1em;"><b>301</b> - XML mal formado.</dd>
+                                        <dd style="padding-left: 1em;"><b>302</b> - Sello mal formado o inválido.</dd>
+                                        <dd style="padding-left: 1em;"><b>303</b> - Sello no corresponde a emisor.</dd>
+                                        <dd style="padding-left: 1em;"><b>304</b> - Certificado Revocado o caduco.</dd>
+                                        <dd style="padding-left: 1em;"><b>305</b> - La fecha de emisión no esta dentro de la vigencia del CSD del Emisor.</dd>
+                                        <dd style="padding-left: 1em;"><b>306</b> - El certificado no es de tipo CSD.</dd>
+                                        <dd style="padding-left: 1em;"><b>307</b> - El CFDI contiene un timbre previo.</dd>
+                                        <dd style="padding-left: 1em;"><b>308</b> - Certificado no expedido por el SAT.</dd>
+                                    </dl>
+                                </div>
+                            </group>
+                            <group colspan="4" >
+                                <div style="padding-left: 1em;">
+                                    <dl>
+                                        <dt><h3 style="clear: both; display: block; color: #438594; font-size: 1.17em;">Validación de negocio de CFD:</h3></dt>
+                                        <dd style="padding-left: 1em;"><b>401</b> - Fecha y hora de generación fuera de rango.</dd>
+                                        <dd style="padding-left: 1em;"><b>402</b> - RFC del emisor no se encuentra en el régimen de contribuyentes.</dd>
+                                        <dd style="padding-left: 1em;"><b>403</b> - La fecha de emisión no es posterior al 01 de enero de 2012.</dd>
+                                    </dl>
+                                </div>
+                            </group>
+                            <group colspan="4" >
+                                <div style="padding-left: 1em;">
+                                    <dl>
+                                        <dt><h3 style="clear: both; display: block; color: #438594; font-size: 1.17em;">Validación Finkok:</h3></dt>
+                                        <dd style="padding-left: 1em;"><b>501</b> - Autenticación no válida.</dd>
+                                        <dd style="padding-left: 1em;"><b>703</b> - Cuenta suspendida.</dd>
+                                        <dd style="padding-left: 1em;"><b>704</b> - Error con la contraseña de la llave Privada.</dd>
+                                        <dd style="padding-left: 1em;"><b>705</b> - XML estructura inválida.</dd>
+                                        <dd style="padding-left: 1em;"><b>706</b> - Socio Inválido.</dd>
+                                        <dd style="padding-left: 1em;"><b>707</b> - XML ya contiene un nodo TimbreFiscalDigital.</dd>
+                                        <dd style="padding-left: 1em;"><b>708</b> - No se pudo conectar al SAT.</dd>
+                                    </dl>
+                                </div>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Cancelación" attrs="{'invisible': [('mandada_cancelar','=',False)]}">
+                        <field name="mandada_cancelar" invisible="1"/>
+                        <label for="mensaje_pac"/>
+                        <field name="mensaje_pac" readonly="1"/>
+                    </page>
+                </notebook>
+                <h1 position="before">
+                    <field name="qrcode" widget="image" class="oe_left oe_avatar" attrs="{'invisible':[('uuid','=',False)]}"/>
+                </h1>
+                <field name="fiscal_position_id" position="after">
+                    <field name="formapago_id"/>
+                    <field name="tipopago_id"/>
+                    <field name="cuentaBanco" attrs="{'invisible':[('cuentaBanco','=','')]}"/>
+                </field>
+            </field>
+        </record>
+
+<!--         <record id="cancel_uuid_invoice_form_" model="ir.ui.view">
+            <field name="name">cancel.uuid.invoice.form_</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='invoice_cancel']" position="replace">
+                    <button name="invoice_cancel" states="draft,proforma2,sale,open" string="Cancel Invoice" groups="account.group_account_invoice" attrs="{'invisible':[('uuid','!=',False)]}"/>
+                </xpath>
+            </field>
+        </record> -->
+
+        <record model="ir.ui.view" id="invoice_cfdi_tree">
+            <field name="name">invoice_cfdi_tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="colors">orange:mandada_cancelar == True and state != 'cancel';blue:state == 'draft';black:state in ('proforma','proforma2','open');gray:state == 'cancel'</attribute>
+                </tree>
+                <field name="number" position="before">
+                    <field name="mandada_cancelar" invisible="1"/>
+                    <field name="serie"/>
+                </field>
+            </field>
+        </record>
+            
+    </data>
+</openerp>
+
+
+

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cfd_mx_regimen,access_cfd_mx_regimen,model_cfd_mx_regimen,group_cfd_mx_user,1,1,1,1
+access_cfd_mx_formapago,access_cfd_mx_formapago,model_cfd_mx_formapago,group_cfd_mx_user,1,1,1,1
+access_cfd_mx_certificate,access_cfd_mx_certificate,model_cfd_mx_certificate,group_cfd_mx_manager,1,1,1,1
+access_cfd_mx_aprobacion,access_cfd_mx_aprobacion,model_cfd_mx_aprobacion,group_cfd_mx_manager,1,1,1,1
+access_cfd_mx_conf_addenda,access_cfd_mx_conf_addenda,model_cfd_mx_conf_addenda,group_cfd_mx_user,1,1,1,1
+access_cfd_mx_tipopago,access_cfd_mx_tipopago,model_cfd_mx_tipopago,,1,1,1,1

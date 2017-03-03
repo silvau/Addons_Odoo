@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--
+        Country
+        -->
+        <record id="view_country_alpha3_tree" model="ir.ui.view">
+            <field name="name">res.country.alpha3.tree</field>
+            <field name="model">res.country</field>
+            <field name="inherit_id" ref="base.view_country_tree"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="code_alpha3"/>
+                </field>
+            </field>
+        </record>
+
+
+        <!-- Ciudad -->
+        <record id="view_country_state_ciudad_tree" model="ir.ui.view">
+            <field name="name">res.country.state.ciudad.tree</field>
+            <field name="model">res.country.state.ciudad</field>
+            <field name="arch" type="xml">
+                <tree string="Ciudad">
+                    <field name="name"/>
+                    <field name="state_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_country_state_ciudad_form" model="ir.ui.view">
+            <field name="name">res.country.state.ciudad.form</field>
+            <field name="model">res.country.state.ciudad</field>
+            <field name="arch" type="xml">
+                <form string="Ciudad">
+                    <header>
+                        <button name="get_import_datas_ciudad" string="Importar Ciudad" type="object" icon="fa-tasks" class="oe_inline"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="state_id" options='{"no_open": True}'/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_country_state_ciudad" model="ir.actions.act_window">
+            <field name="name">Ciudad</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.country.state.ciudad</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_country_state_ciudad_tree"/>
+        </record>
+        <menuitem action="action_country_state_ciudad" id="menu_country_state_ciudad_partner" parent="base.menu_localisation" sequence="3" groups="base.group_no_one"/>
+
+
+        <!-- Municipio -->
+        <record id="view_country_state_municipio_tree" model="ir.ui.view">
+            <field name="name">res.country.state.municipio.tree</field>
+            <field name="model">res.country.state.municipio</field>
+            <field name="arch" type="xml">
+                <tree string="Municipio">
+                    <field name="clave_sat" />
+                    <field name="name"/>
+                    <field name="ciudad_id"/>
+                    <field name="state_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_country_state_municipio_form" model="ir.ui.view">
+            <field name="name">res.country.state.municipio.form</field>
+            <field name="model">res.country.state.municipio</field>
+            <field name="arch" type="xml">
+                <form string="Municipio">
+                    <header>
+                        <button name="get_import_datas_municipio" string="Importar Municipios" type="object" icon="fa-tasks" class="oe_inline"/>
+                        <button name="get_load_datas_sat_municipio" string="Cargar Clave SAT" type="object" icon="fa-tasks" class="oe_inline"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="clave_sat" />
+                            <field name="state_id" options='{"no_open": True}'/>
+                            <field name="ciudad_id" options='{"no_open": True}'/>                            
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_country_state_municipio" model="ir.actions.act_window">
+            <field name="name">Municipio</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.country.state.municipio</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_country_state_municipio_tree"/>
+        </record>
+        <menuitem action="action_country_state_municipio" id="menu_country_state_municipio_partner" parent="base.menu_localisation" sequence="4" groups="base.group_no_one"/>
+
+        <!-- Colonia -->
+        <record id="view_country_state_municipio_colonia_tree" model="ir.ui.view">
+            <field name="name">res.country.state.municipio.colonia.tree</field>
+            <field name="model">res.country.state.municipio.colonia</field>
+            <field name="arch" type="xml">
+                <tree string="Colonia">
+                    <field name="name"/>                    
+                    <field name="municipio_id"/>
+                    <field name="cp" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_country_state_municipio_colonia_form" model="ir.ui.view">
+            <field name="name">res.country.state.municipio.colonia.form</field>
+            <field name="model">res.country.state.municipio.colonia</field>
+            <field name="arch" type="xml">
+                <form string="Colonia">
+                    <header>
+                        <button name="get_import_datas_colonia" string="Importar Colonias" type="object" icon="fa-tasks" class="oe_inline"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="municipio_id" options='{"no_open": True}'/>
+                            <field name="cp" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_country_state_municipio_colonia" model="ir.actions.act_window">
+            <field name="name">Colonia</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.country.state.municipio.colonia</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_country_state_municipio_colonia_tree"/>
+        </record>
+        <menuitem action="action_country_state_municipio_colonia" id="menu_country_state_municipio_colonia_partner" parent="base.menu_localisation" sequence="4" groups="base.group_no_one"/>
+
+    </data>
+</openerp>

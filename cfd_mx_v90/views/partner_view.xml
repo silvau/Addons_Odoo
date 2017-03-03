@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        <record model="ir.ui.view" id="view_partner_cfdi_categ_form">
+            <field name="name">view_partner_cfdi_categ_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="category_id" position="after">
+                        <field name="regimen_id" placeholder="Régimen fiscal" groups="cfd_mx.group_cfd_mx_manager"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_partner_cfdi_street_form">
+            <field name="name">view_partner_cfdi_street_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="street" position="after">
+                        <div>
+                            <label string="No. ext." />
+                            <field name="noExterior" class="o_address_street"  style="width:60%%"
+                                attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" />
+                        </div>
+                        <div>
+                            <label string="No. int." />
+                            <field name="noInterior" class="o_address_street" style="width:60%%"
+                                attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" />
+                        </div>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_partner_cfdi_street2_form">
+            <field name="name">view_partner_cfdi_street2_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="street2" position="attributes">
+                        <attribute name="placeholder">Colonia:</attribute>
+                    </field>
+                </data>
+            </field>
+        </record>
+            
+
+        <record model="ir.ui.view" id="view_partner_property_cfdi_form">
+            <field name="name">view.partner.property.cfdi.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="property_account_position_id" position="after">
+                        <field name="metodo_pago"/>
+                        <field name="xml_cfdi_sinacento"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_partner_cfdi_sinacento_form">
+            <field name="name">view.partner.cfdi.sinacento.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="property_account_position_id" position="after">
+                        <field name="xml_cfdi_sinacento"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+
+
