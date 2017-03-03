@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_res_country_state_ciudad,access_res_country_state_ciudad,direccion_mx.model_res_country_state_ciudad,,1,1,1,1
-access_res_country_state_municipio,access_res_country_state_municipio,direccion_mx.model_res_country_state_municipio,,1,1,1,1
-access_res_country_state_municipio_colonia,access_res_country_state_municipio_colonia,direccion_mx.model_res_country_state_municipio_colonia,,1,1,1,1
