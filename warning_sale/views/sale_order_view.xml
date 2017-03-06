@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="sale_form_view_inherit">
+            <field name="name">Warning sale view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+          <xpath expr="//button[@name='action_button_confirm' and @states='draft']" position="replace">
+              <button name="action_button_confirm2" states="draft" string="Confirm Sale" type="object" groups="base.group_user"/>
+          </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
+    

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="sale_order_wizard_form">
+            <field name="name">sale_order_wizard_form</field>
+            <field name="model">sale.order.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Wizard" version="7.0">
+                
+                   <field name="leyenda" />
+
+                  <footer>
+                            <button name="ajustar" string="Aceptar" type="object" class="oe_highlight"/> or 
+                            <button name="no_ajustar" string="Cancelar" type="object" class="oe_highlight"/> 
+                  </footer>
+
+               </form> 
+
+            </field>
+        </record>
+
+        <act_window 
+            name="Sale Order Wizard"
+            res_model="sale.order.wizard"
+            src_model="sale.order"
+            view_mode="form"
+            target="new"
+            multi="True"
+            key2="client_action_multi"
+            id="action_sale_order_wizard_form" />
+   </data>
+</openerp>
