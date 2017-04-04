@@ -62,14 +62,21 @@ class lot_existence(osv.osv):
                 new_id=0
                 new_id=self.create(cr,uid,lot_existence_reg_to_add)
                 new_lot_existence= self.browse(cr,uid,new_id)
-                if new_lot_existence.existence == 0.0  and new_id:
-                    lot_existence_obj.unlink(cr,uid,new_id)
+                if new_lot_existence.existence == 0.0 :
+                    _logger.info('Quitando registro lot_id: %s, warehouse_id: %s.  porque no tiene existencia', lot_existence_reg_to_add['lot_id'], lot_existence_reg_to_add['warehouse_id'])
+                    self.unlink(cr,uid,new_id)
              
         else:                  
             for warehouse_id in warehouse_ids:
                for lot_id in lot_ids:
                    _logger.info('Agregando registro para inicializar lot_existence con lot_id: %s, warehouse_id: %s. ', lot_id, warehouse_id)
-                   self.create(cr,uid,{'lot_id':lot_id, 'warehouse_id': warehouse_id}) 
+                   new_id=0
+                   new_id= self.create(cr,uid,{'lot_id':lot_id, 'warehouse_id': warehouse_id})
+                   new_lot_existence= self.browse(cr,uid,new_id)
+                   if new_lot_existence.existence == 0.0 :
+                       _logger.info('Quitando registro lot_id: %s, warehouse_id: %s.  porque no tiene existencia', lot_id, warehouse_id)
+                       self.unlink(cr,uid,new_id)
+
         _logger.info('Inicializacion Terminada')
         return True
 
