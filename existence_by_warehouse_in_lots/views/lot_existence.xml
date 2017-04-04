@@ -80,15 +80,17 @@
                 </field>
         </record>
 
-		<menuitem id="lot_existence_menu" name="Lot Existences" sequence="26" parent="stock.menu_traceability" action="lot_existence_action" groups="lot_existence_group"/>
-
-		<menuitem id="existence_stock_production_lot_menu" name="Filtered Lots" sequence="26" parent="stock.menu_traceability" action="existence_stock_production_lot_action_server"  groups="lot_existence_group"/>
-
 
         <record id="lot_existence_group" model="res.groups">
             <field name="name">Lot with Existence by warehouse only</field>
             <field name="comment">Shows only the lots with existence in the warehouse of the user.</field>
         </record>
+
+
+	<menuitem id="lot_existence_menu" name="Lot Existences" sequence="26" parent="stock.menu_traceability" action="lot_existence_action" groups="lot_existence_group"/>
+
+	<menuitem id="existence_stock_production_lot_menu" name="Filtered Lots" sequence="26" parent="stock.menu_traceability" action="existence_stock_production_lot_action_server"  groups="lot_existence_group"/>
+
 
 
 
