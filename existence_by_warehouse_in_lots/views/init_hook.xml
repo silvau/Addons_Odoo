@@ -1,0 +1,6 @@
+<openerp>
+ <data noupdate="1" > 
+<!--  <data> -->
+    <function model="lot.existence" name="_set_existences"/>
+  </data>
+</openerp>
