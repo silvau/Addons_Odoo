@@ -40,7 +40,7 @@ class lot_existence(osv.osv):
             raise NotImplementedError("Ids is just there by convention! Please don't use it.")
         lot_obj = self.pool.get('stock.production.lot')
         warehouse_obj = self.pool.get('stock.warehouse')      
-        lot_ids = lot_obj.search(cr,uid,[])
+        lot_ids = lot_obj.search(cr,uid,[('stock_available','>',0.0)])
         warehouse_ids = warehouse_obj.search(cr,uid,[])
         lot_existence_ids= self.search(cr,uid,[])
         lot_existence_regs_to_add=[]
