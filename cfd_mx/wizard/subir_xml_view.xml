@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+        <record model="ir.ui.view" id="subir_xml_form_view">
+            <field name="name">subir.xml.form.view</field>
+            <field name="model">cfd_mx.subir.xml</field>
+            <field name="arch" type="xml">
+                <form string="Subir xml" version="7.0">
+                    <group>
+                        <field name="archivo_xml" required="1"/>
+                        <field name="archivo_pdf"/>
+                    </group>
+                    <footer>
+                        <button type="special" special="cancel" string="Cerrar" icon="gtk-cancel"/>
+                        <button type="object" name="action_subir" string="Subir" icon="gtk-ok"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    
+        <record id="action_subir_xml" model="ir.actions.act_window">
+            <field name="name">Subir XML</field>
+            <field name="res_model">cfd_mx.subir.xml</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="subir_xml_form_view"/>
+            <field name="target">new</field>
+        </record>
+      
+    </data>
+</openerp>    
