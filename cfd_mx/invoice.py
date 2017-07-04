@@ -512,9 +512,9 @@ class account_invoice(osv.Model):
             'noInterior': invoice.partner_id.noInterior or "",
             'localidad': invoice.partner_id.ciudad_id and invoice.partner_id.ciudad_id.name  or "",
             'colonia': invoice.partner_id.colonia_id and invoice.partner_id.colonia_id.name  or "",
-            'municipio': invoice.company_id.partner_id.municipio_id and (invoice.company_id.partner_id.municipio_id.clave_sat or invoice.company_id.partner_id.municipio_id.name) or "",
-            'estado': invoice.company_id.partner_id.state_id and (invoice.company_id.partner_id.state_id.code or invoice.company_id.partner_id.state_id.name) or "",
-            'pais': invoice.company_id.partner_id.country_id and (invoice.company_id.partner_id.country_id.code_alpha3 or invoice.company_id.partner_id.country_id.name) or "",
+            'municipio': invoice.partner_id.municipio_id and (invoice.partner_id.municipio_id.clave_sat or invoice.partner_id.municipio_id.name) or "",
+            'estado': invoice.partner_id.state_id and (invoice.partner_id.state_id.code or invoice.partner_id.state_id.name) or "",
+            'pais': invoice.partner_id.country_id and (invoice.partner_id.country_id.code_alpha3 or invoice.partner_id.country_id.name) or "",
             'codigoPostal': invoice.partner_id.zip or ""
         }, receptor)
         
