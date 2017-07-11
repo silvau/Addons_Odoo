@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from openerp.osv import osv, fields
-
+import pdb
 class stock_picking(osv.Model):
 
     _inherit = "stock.picking"
@@ -11,24 +11,16 @@ class stock_picking(osv.Model):
 
     }
 
-    _defaults= {
-
-        'picking_no' : lambda obj, cr, uid, context: obj.pool.get('ir.sequence').next_by_code(cr,uid,'stock.picking1'),
-    }
 
     _sql_constraints = [
 
-    ('picking_no_unique', 'unique(pickuing_no)', 'Picking Number should be unique.'),
+    ('picking_no_unique', 'unique(picking_no)', 'Picking Number should be unique.'),
     
     ]
 
-
-    def copy(self, cr, uid, id, default=None, context=None):
-        if not default:
-            default = {}
-        default.update({
-            'picking_no': self.pool.get('ir.sequence').next_by_code(cr, uid, 'stock.picking1'),
-        })
-        return super(stock_picking, self).copy(cr, uid, id, default, context=context)
-
-
+    def create(self, cr, uid, vals, context=None):
+        if context is None:
+            context={} 
+        vals['picking_no']= self.pool.get('ir.sequence').next_by_code(cr,uid,'stock.picking1')
+        res = super(stock_picking, self).create(cr, uid, vals, context=context)
+ 
