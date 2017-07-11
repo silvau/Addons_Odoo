@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from openerp.osv import osv, fields
-import pdb
 class stock_picking(osv.Model):
 
     _inherit = "stock.picking"
@@ -23,4 +22,5 @@ class stock_picking(osv.Model):
             context={} 
         vals['picking_no']= self.pool.get('ir.sequence').next_by_code(cr,uid,'stock.picking1')
         res = super(stock_picking, self).create(cr, uid, vals, context=context)
+        return res
  
